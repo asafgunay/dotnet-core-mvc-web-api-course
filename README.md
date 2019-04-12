@@ -73,3 +73,4 @@
 * [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download)
 
 * [Visual Studio Code](https://code.visualstudio.com/)
+* [Kodluyoruz Bursa #Slack](https://join.slack.com/t/kodluyoruzbursa/shared_invite/enQtNjA2OTMzODk1MzgxLTdhN2ZjYTdhNTRiNTQzNmE5MmQxNTNkOTM4NjA1ZGQyMWIzNTBhMGQyOTA0NWRmNjI5NjNkZjViZTFmZTk2NmM)

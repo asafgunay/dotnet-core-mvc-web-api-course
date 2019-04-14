@@ -1,0 +1,13 @@
+﻿@using DotnetMVCBaslangic.Models
+@model IEnumerable<Ogrenci>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<ul>
+    @foreach (Ogrenci item in Model)
+    {
+        <li>Adi: @item.Adi Soyadi: @item.Soyadi Ogrenci No: @item.OgrenciNo</li>
+    }
+</ul>

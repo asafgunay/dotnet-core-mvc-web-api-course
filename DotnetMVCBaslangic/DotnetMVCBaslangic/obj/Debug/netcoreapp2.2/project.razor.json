@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "c:\\Users\\Asaf\\source\\repos\\KodluyoruzBursaDotnet\\dotnet-core-mvc-web-api-course\\DotnetMVCBaslangic\\DotnetMVCBaslangic\\DotnetMVCBaslangic.csproj",
+  "TargetFramework": "netcoreapp2.2",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "MVC-2.1",
+    "LanguageVersion": "2.1",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-2.1"
+      }
+    ]
+  }
+}

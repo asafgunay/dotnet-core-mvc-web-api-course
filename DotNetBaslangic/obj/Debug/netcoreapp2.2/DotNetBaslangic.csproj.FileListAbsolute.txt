@@ -1,0 +1,11 @@
+C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\DotNetBaslangic\bin\Debug\netcoreapp2.2\DotNetBaslangic.deps.json
+C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\DotNetBaslangic\bin\Debug\netcoreapp2.2\DotNetBaslangic.runtimeconfig.json
+C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\DotNetBaslangic\bin\Debug\netcoreapp2.2\DotNetBaslangic.runtimeconfig.dev.json
+C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\DotNetBaslangic\bin\Debug\netcoreapp2.2\DotNetBaslangic.dll
+C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\DotNetBaslangic\bin\Debug\netcoreapp2.2\DotNetBaslangic.pdb
+C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\DotNetBaslangic\obj\Debug\netcoreapp2.2\DotNetBaslangic.csprojAssemblyReference.cache
+C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\DotNetBaslangic\obj\Debug\netcoreapp2.2\DotNetBaslangic.csproj.CoreCompileInputs.cache
+C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\DotNetBaslangic\obj\Debug\netcoreapp2.2\DotNetBaslangic.AssemblyInfoInputs.cache
+C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\DotNetBaslangic\obj\Debug\netcoreapp2.2\DotNetBaslangic.AssemblyInfo.cs
+C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\DotNetBaslangic\obj\Debug\netcoreapp2.2\DotNetBaslangic.dll
+C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\DotNetBaslangic\obj\Debug\netcoreapp2.2\DotNetBaslangic.pdb

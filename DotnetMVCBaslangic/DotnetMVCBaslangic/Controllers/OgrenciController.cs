@@ -15,8 +15,8 @@ namespace DotnetMVCBaslangic.Controllers
         /// <returns>Ogrencilerin Listesini doner</returns>
         public IActionResult Index()
         {
-            List<Ogrenci> ogrenciListesi = Ogrenci.GetFakeDataList();
-            return View(ogrenciListesi);
+            //List<Ogrenci> ogrenciListesi = Ogrenci.GetFakeDataList();
+            return View();
         }
     }
 }

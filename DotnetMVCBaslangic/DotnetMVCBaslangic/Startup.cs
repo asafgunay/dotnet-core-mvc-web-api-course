@@ -30,7 +30,7 @@ namespace DotnetMVCBaslangic
             services.AddDbContext<DotnetMVCBaslangicDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DotnetMVCBaslangicDb")));
 
             // ef core 
-            // dotnet ef migrations add InitialCreate
+            //  
 
             // SQLite kullanicilari icin
             //services.AddEntityFrameworkSqlite().AddDbContext<DatabaseContext>();

@@ -60,3 +60,4 @@ C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\dotnet-core-mvc-web-api-course\
 C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\dotnet-core-mvc-web-api-course\DotnetMVCBaslangic\DotnetMVCBaslangic\obj\Debug\netcoreapp2.2\DotnetMVCBaslangic.dll
 C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\dotnet-core-mvc-web-api-course\DotnetMVCBaslangic\DotnetMVCBaslangic\obj\Debug\netcoreapp2.2\DotnetMVCBaslangic.pdb
 C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\dotnet-core-mvc-web-api-course\DotnetMVCBaslangic\DotnetMVCBaslangic\obj\Debug\netcoreapp2.2\DotnetMVCBaslangic.csproj.CopyComplete
+C:\Users\Asaf\source\repos\KodluyoruzBursaDotnet\dotnet-core-mvc-web-api-course\DotnetMVCBaslangic\DotnetMVCBaslangic\obj\Debug\netcoreapp2.2\Razor\Views\Ogrenci\Create.g.cshtml.cs

@@ -40,6 +40,46 @@ namespace DotnetMVCBaslangic.Controllers
                 return RedirectToAction("Index");
             }
             return View();
-        } 
+        }
+        public IActionResult Delete(int id)
+        {
+            if (id > 0)
+            {
+                // silinecek ogrenciyi getir
+                Ogrenci silinecekOgrenci = _context.Ogrenciler.Find(id);
+                // Ogrenci geldi mi kontrol et
+                if (silinecekOgrenci == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                // Ogrenci'yi sil
+                _context.Ogrenciler.Remove(silinecekOgrenci);
+                _context.SaveChanges();
+                // Tekrar liste sayfasina yonlendir
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult Details(int id)
+        {
+            // id 0 dan buyuk mu?
+            if (id > 0)
+            {
+                // Ogrenciyi id ye gore getir
+                Ogrenci gelenOgrenci = _context.Ogrenciler.Find(id);
+                // gelen ogrenci null mu?
+                if (gelenOgrenci == null)
+                {
+                    // null ise anasayfaya yonlendir
+                    return RedirectToAction("Index", "Home");
+                }
+
+                // Gelen Ogrenciyi View e bind et
+                return View(gelenOgrenci);
+            }
+            // id 0 dan buyuk degilse anasayfaya gonder
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

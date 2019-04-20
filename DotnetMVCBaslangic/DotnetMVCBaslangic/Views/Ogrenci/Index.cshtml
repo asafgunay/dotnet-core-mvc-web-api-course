@@ -4,11 +4,6 @@
     ViewData["Title"] = "Index";
 }
 
-
-
-
-
-
 <div class="card">
     <div class="card-header">
         Ogrenci Listesi
@@ -20,6 +15,7 @@
                     <th scope="col">Adi</th>
                     <th scope="col">Soyadi</th>
                     <th scope="col">Ogrenci No</th>
+                    <th scope="col">Islem</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +25,9 @@
                         <td>@item.Adi</td>
                         <td>@item.Soyadi</td>
                         <td>@item.OgrenciNo</td>
+                        <td>
+                            <a asp-action="Delete" asp-controller="Ogrenci" asp-route-id="@item.Id">Sil</a>
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -36,6 +35,8 @@
     </div>
     <div class="card-footer">
         <!-- Yeni ogrenci ekleme butonu via Bootstrap v4-->
+        @* Yeni ogrenci ekleme butonu via Bootstrap v4 *@
+
         <a asp-action="Create" asp-controller="Ogrenci" class="btn btn-primary">
             Yeni Ogrenci Ekle
         </a>

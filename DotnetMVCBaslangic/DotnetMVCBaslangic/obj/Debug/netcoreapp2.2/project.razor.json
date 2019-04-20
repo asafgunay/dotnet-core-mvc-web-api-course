@@ -2784,6 +2784,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views\\Ogrenci\\Edit.cshtml",
+      "TargetPath": "Views\\Ogrenci\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"

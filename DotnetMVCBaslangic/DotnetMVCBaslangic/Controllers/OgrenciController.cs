@@ -81,5 +81,27 @@ namespace DotnetMVCBaslangic.Controllers
             // id 0 dan buyuk degilse anasayfaya gonder
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            // id 0 dan buyuk mu?
+            if (id > 0)
+            {
+                // Ogrenciyi id ye gore getir
+                Ogrenci gelenOgrenci = _context.Ogrenciler.Find(id);
+                // gelen ogrenci null mu?
+                if (gelenOgrenci == null)
+                {
+                    // null ise anasayfaya yonlendir
+                    return NotFound();
+                }
+
+                // Gelen Ogrenciyi View e bind et
+                return View(gelenOgrenci);
+            }
+            // id 0 dan buyuk degilse anasayfaya gonder
+            return NotFound();
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DotnetMVCBaslangic.EntityFramework;
 using DotnetMVCBaslangic.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotnetMVCBaslangic.Controllers
 {
@@ -101,6 +102,35 @@ namespace DotnetMVCBaslangic.Controllers
                 return View(gelenOgrenci);
             }
             // id 0 dan buyuk degilse anasayfaya gonder
+            return NotFound();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, [Bind("Id,Adi,Soyadi,OgrenciNo")] Ogrenci ogrenci)
+        {
+            if (id != ogrenci.Id)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                // guncelleme icin kodlar
+
+                try
+                {
+                    _context.Update(ogrenci);
+                    _context.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (_context.Ogrenciler.Find(ogrenci.Id) == null)
+                    {
+                        return NotFound();
+                    }
+                    throw;
+                }
+                return RedirectToAction("Index");
+            }
             return NotFound();
         }
     }

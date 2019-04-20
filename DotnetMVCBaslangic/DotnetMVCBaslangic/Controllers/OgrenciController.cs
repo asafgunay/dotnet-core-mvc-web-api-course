@@ -22,7 +22,8 @@ namespace DotnetMVCBaslangic.Controllers
         public IActionResult Index()
         {
             // List<Ogrenci> ogrenciListesi = Ogrenci.GetFakeDataList();
-            return View();
+            List<Ogrenci> ogrenciListesi = _context.Ogrenciler.ToList();
+            return View(ogrenciListesi);
         }
         [HttpGet]
         public IActionResult Create()
@@ -36,7 +37,7 @@ namespace DotnetMVCBaslangic.Controllers
             {
                 _context.Ogrenciler.Add(model);
                 _context.SaveChanges();
-                return View();
+                return RedirectToAction("Index");
             }
             return View();
         } 

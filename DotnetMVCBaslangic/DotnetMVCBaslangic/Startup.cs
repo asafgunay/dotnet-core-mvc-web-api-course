@@ -27,7 +27,7 @@ namespace DotnetMVCBaslangic
         {
             // context`e ihtiyaci olan veritabani adresini tanimlayin
             //Sql Localdb kullanicilari icin
-            services.AddDbContext<DotnetMVCBaslangicDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DotnetMVCBaslangicDb")));
+            services.AddDbContext<DotnetMVCBaslangicDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DotnetMVCBaslangicDbConnStr")));
 
             // ef core 
             //  

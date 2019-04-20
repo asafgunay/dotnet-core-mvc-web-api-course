@@ -4,10 +4,40 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-<ul>
-    @foreach (Ogrenci item in Model)
-    {
-        <li>Adi: @item.Adi Soyadi: @item.Soyadi Ogrenci No: @item.OgrenciNo</li>
-    }
-</ul>
+
+
+
+
+
+<div class="card">
+    <div class="card-header">
+        Ogrenci Listesi
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Adi</th>
+                    <th scope="col">Soyadi</th>
+                    <th scope="col">Ogrenci No</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Ogrenci item in Model)
+                {
+                    <tr>
+                        <td>@item.Adi</td>
+                        <td>@item.Soyadi</td>
+                        <td>@item.OgrenciNo</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <!-- Yeni ogrenci ekleme butonu via Bootstrap v4-->
+        <a asp-action="Create" asp-controller="Ogrenci" class="btn btn-primary">
+            Yeni Ogrenci Ekle
+        </a>
+    </div>
+</div>

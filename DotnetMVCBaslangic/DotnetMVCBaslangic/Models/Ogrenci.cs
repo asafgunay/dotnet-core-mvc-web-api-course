@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,8 +10,14 @@ namespace DotnetMVCBaslangic.Models
     public class Ogrenci
     {
         public int Id { get; set; }
+        [DisplayName("Adı")]
+        [Required]
         public string Adi { get; set; }
+        [DisplayName("Soyadı")]
+        [Required]
         public string Soyadi { get; set; }
+        [DisplayName("Öğrenci Numarası")]
+        [Required]
         public int OgrenciNo { get; set; }
 
         // EF dahil edildikten sonra bu metod kullanilmayacak

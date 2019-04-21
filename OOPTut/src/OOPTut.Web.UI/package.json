@@ -1,0 +1,9 @@
+{
+  "name": "ooptut.web.ui",
+  "version": "1.0.0",
+  "description": "Bootcamp",
+  "dependencies": {
+    "jquery": "^3.4.0",
+    "bootstrap": "4.3.1"
+  }
+}

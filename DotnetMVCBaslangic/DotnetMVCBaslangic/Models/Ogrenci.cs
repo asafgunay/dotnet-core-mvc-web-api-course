@@ -11,13 +11,13 @@ namespace DotnetMVCBaslangic.Models
     {
         public int Id { get; set; }
         [DisplayName("Adı")]
-        [Required]
+        [Required(ErrorMessage = "Adı alanı gereklidir")]
         public string Adi { get; set; }
         [DisplayName("Soyadı")]
-        [Required]
+        [Required(ErrorMessage ="Soyadı alanı gereklidir")]
         public string Soyadi { get; set; }
         [DisplayName("Öğrenci Numarası")]
-        [Required]
+        [Required(ErrorMessage = "Öğrenci Numarası alanı gereklidir")]
         public int OgrenciNo { get; set; }
 
         // EF dahil edildikten sonra bu metod kullanilmayacak

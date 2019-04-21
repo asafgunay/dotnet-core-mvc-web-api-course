@@ -30,7 +30,10 @@
     </div>
 </form>
 @section Scripts{
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @*@{
+     await Html.RenderPartialAsync("_ValidationScriptsPartial");
+     <!-- kaynak buradan => ~/Views/Shared/_ValidationScriptsPartial.cshtml" -->
+                }*@
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 }

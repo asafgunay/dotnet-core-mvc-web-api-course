@@ -2,8 +2,21 @@
   "name": "ooptut.web.ui",
   "version": "1.0.0",
   "description": "Bootcamp",
+  "scripts": {
+    "copy": "copyfiles -u 1 ./node_modules/"
+  },
   "dependencies": {
     "jquery": "^3.4.0",
-    "bootstrap": "4.3.1"
+    "bootstrap": "4.3.1",
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.9"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "rimraf": "^2.6.3",
+    "gulp-uglify": "^3.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-bower": "^0.0.15",
+    "copyfiles": "^2.1.0",
+    "merge-stream": "^1.0.1"
   }
 }

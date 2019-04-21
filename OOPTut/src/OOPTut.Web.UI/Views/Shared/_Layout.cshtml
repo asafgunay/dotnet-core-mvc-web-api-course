@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_Layout</title>
+</head>
+<body>
+    <div> Buraya Menu gelecek</div>
+    <hr />
+    <div>
+        @*Burasi view'dan gelen cshtml'i gosterecek*@
+        @RenderBody()
+    </div>
+    <hr />
+    <div>Burasi footer</div>
+    @RenderSection("Scripts", false)
+</body>
+</html>

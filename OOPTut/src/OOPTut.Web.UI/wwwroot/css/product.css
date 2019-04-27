@@ -5,20 +5,24 @@
 /*
  * Custom translucent site header
  */
-
+.site-logo {
+    position: absolute;
+    top: 4px;
+    width: 2.5rem;
+}
 .site-header {
-    background-color: rgba(0, 0, 0, .85);
+    background-color: rgba(255, 255, 255, 0.65);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
 }
 
     .site-header a {
-        color: #999;
+        color: #3e3e3e;
         transition: ease-in-out color .15s;
     }
 
         .site-header a:hover {
-            color: #fff;
+            color: #999;
             text-decoration: none;
         }
 
@@ -76,4 +80,9 @@
 
 .overflow-hidden {
     overflow: hidden;
+}
+
+.slider-bg {
+    background-image: url('../img/o8rdsc0.jpg');
+    background-size: cover;
 }

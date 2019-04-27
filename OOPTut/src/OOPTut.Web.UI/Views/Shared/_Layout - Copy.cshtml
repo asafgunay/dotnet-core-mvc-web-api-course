@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @*<link rel="stylesheet" href="~/vendor/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    <title>_Layout</title>
+</head>
+<body>
+    <div> Buraya Menu gelecek</div>
+    <hr />
+    <div>
+        @*Burasi view'dan gelen cshtml'i gosterecek*@
+        @RenderBody()
+    </div>
+    <hr />
+    <div>Burasi footer</div>
+    @*<script src="~/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    @RenderSection("Scripts", false)
+
+</body>
+</html>

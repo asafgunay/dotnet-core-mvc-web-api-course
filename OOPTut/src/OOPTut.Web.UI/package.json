@@ -4,6 +4,16 @@
   "description": "Bootcamp",
   "dependencies": {
     "jquery": "^3.4.0",
-    "bootstrap": "4.3.1"
+    "bootstrap": "4.3.1",
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.9"
+  },
+  "devDependencies": {
+    "gulp": "4.0.1",
+    "rimraf": "2.6.3",
+    "gulp-concat": "2.6.1",
+    "gulp-uglify": "3.0.2",
+    "gulp-bower": "0.0.15",
+    "copyfiles": "2.1.0",
+    "merge-stream": "1.0.1"
   }
 }

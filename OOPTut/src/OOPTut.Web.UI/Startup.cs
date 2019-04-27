@@ -33,11 +33,13 @@ namespace OOPTut.Web.UI
             }
             // statik dosyalarin kullanimini acar herkese!
             // Ayrica new StaticFileOptions() ile wwwroot disinda kalan node_modules klasorunu /vendor path'i ile cagirmamizi ayarliyoruz.
-            app.UseStaticFiles(new StaticFileOptions() {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), @"node_modules")),
-                RequestPath = new PathString("/vendor")
-            });
+            //app.UseStaticFiles(new StaticFileOptions() {
+            //    FileProvider = new PhysicalFileProvider(
+            //        Path.Combine(Directory.GetCurrentDirectory(), @"node_modules")),
+            //    RequestPath = new PathString("/vendor")
+            //});
+
+            app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {

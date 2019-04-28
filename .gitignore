@@ -36,3 +36,4 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+/OOPTut/src/OOPTut.Web.UI/node_modules

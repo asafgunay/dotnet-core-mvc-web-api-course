@@ -20,5 +20,10 @@ namespace OOPTut.Web.UI.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Register(RegisterModel registerModel)
+        {
+            // kayit etme islemleri
+        }
     }
 }

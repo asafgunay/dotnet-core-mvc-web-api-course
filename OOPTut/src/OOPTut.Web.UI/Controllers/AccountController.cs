@@ -46,8 +46,8 @@ namespace OOPTut.Web.UI.Controllers
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    EmailConfirmed=true,
-                    TwoFactorEnabled=false
+                    EmailConfirmed = true,
+                    TwoFactorEnabled = false
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -55,8 +55,16 @@ namespace OOPTut.Web.UI.Controllers
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Contact", "Home");
                 }
+                AddErrors(result);
+            }
+            return View(model);
 
-                return View();
+        }
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var err in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, err.Description);
             }
         }
     }

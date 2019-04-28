@@ -17,8 +17,8 @@ namespace OOPTut.Web.UI.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
-            userManager = _userManager;
-            signInManager = _signInManager;
+           _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()

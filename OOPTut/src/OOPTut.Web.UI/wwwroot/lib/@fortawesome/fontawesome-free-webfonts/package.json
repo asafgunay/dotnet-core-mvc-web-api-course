@@ -1,27 +1,32 @@
 {
-  "_from": "@fortawesome/fontawesome-free-webfonts@^1.0.9",
+  "_args": [
+    [
+      "@fortawesome/fontawesome-free-webfonts@1.0.9",
+      "C:\\Users\\Asaf\\source\\repos\\KodluyoruzBursaDotnet\\dotnet-core-mvc-web-api-course\\OOPTut\\src\\OOPTut.Web.UI"
+    ]
+  ],
+  "_from": "@fortawesome/fontawesome-free-webfonts@1.0.9",
   "_id": "@fortawesome/fontawesome-free-webfonts@1.0.9",
   "_inBundle": false,
   "_integrity": "sha512-nLgl6b6a+tXaoJJnSRw0hjN8cWM/Q5DhxKAwI9Xr0AiC43lQ2F98vQ1KLA6kw5OoYeAyisGGqmlwtBj0WqOI5Q==",
   "_location": "/@fortawesome/fontawesome-free-webfonts",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "@fortawesome/fontawesome-free-webfonts@^1.0.9",
+    "raw": "@fortawesome/fontawesome-free-webfonts@1.0.9",
     "name": "@fortawesome/fontawesome-free-webfonts",
     "escapedName": "@fortawesome%2ffontawesome-free-webfonts",
     "scope": "@fortawesome",
-    "rawSpec": "^1.0.9",
+    "rawSpec": "1.0.9",
     "saveSpec": null,
-    "fetchSpec": "^1.0.9"
+    "fetchSpec": "1.0.9"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free-webfonts/-/fontawesome-free-webfonts-1.0.9.tgz",
-  "_shasum": "72f2c10453422aba0d338fa6a9cb761b50ba24d5",
-  "_spec": "@fortawesome/fontawesome-free-webfonts@^1.0.9",
+  "_spec": "1.0.9",
   "_where": "C:\\Users\\Asaf\\source\\repos\\KodluyoruzBursaDotnet\\dotnet-core-mvc-web-api-course\\OOPTut\\src\\OOPTut.Web.UI",
   "author": {
     "name": "Dave Gandy",
@@ -31,7 +36,6 @@
   "bugs": {
     "url": "http://github.com/FortAwesome/Font-Awesome/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Brian Talbot",
@@ -55,7 +59,6 @@
     }
   ],
   "dependencies": {},
-  "deprecated": "This package is deprecated. See https://git.io/fNCzJ for information about upgrading.",
   "description": "The iconic font, CSS, and SVG framework",
   "engines": {
     "node": ">=6"

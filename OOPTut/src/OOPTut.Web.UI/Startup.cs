@@ -7,23 +7,32 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using OOPTut.EntityFramework.Contexts;
 
 namespace OOPTut.Web.UI
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+
+        // appsettings.json yani Configuration'a erisebilmek icin yapici metod olusturuyorum.
+        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
         // Uygulama calismaya baslamadan once ve calisma sirasinda gerekli olan *servislerin* belirli standartlara gore cagrildigi yer
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationUserDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
         // uygulamanin derlendigi anda http isteklere nasil cevap verileceginin ve uygulamanin hangi standartlar ile calisaginin belirtildigi yer!
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {

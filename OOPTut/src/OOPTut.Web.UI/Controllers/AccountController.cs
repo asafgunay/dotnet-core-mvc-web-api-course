@@ -6,17 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OOPTut.Web.UI.Controllers
 {
-    public class HomeController : Controller
+    public class AccountController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult About()
+        public IActionResult Login()
         {
             return View();
         }
-        public IActionResult Contact()
+        public IActionResult Register()
         {
             return View();
         }

@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3046.614806766635!2d28.883896014755447!3d40.217630575649366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ca119584fdb995%3A0x6eaf9a5da540d5d0!2s%C3%96zel+3+Mart+Azizo%C4%9Flu+Ortaokulu!5e0!3m2!1str!2str!4v1556403331457!5m2!1str!2str" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+<!--Section: Contact v.2-->
+<section class="mb-4">
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">İletişim</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">
+        Her Türlü Sorunuzu 7/24 cevaplıyoruz. Form ile istediklerinizi sorabilirsiniz.
+    </p>
+    <div class="row">
+        <!--Grid column-->
+        <div class="col-md-9 mb-md-0 mb-5">
+            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="name" name="name" class="form-control">
+                            <label for="name" class="">İsminiz :</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="email" name="email" class="form-control">
+                            <label for="email" class="">E-mail Adresiniz :</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                            <input type="text" id="subject" name="subject" class="form-control">
+                            <label for="subject" class="">Konu :</label>
+                        </div>
+                    </div>
+                </div>
+                <!--Grid row-->
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-md-12">
+                        <div class="md-form">
+                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                            <label for="message">Mesajınız :</label>
+                        </div>
+                    </div>
+                </div>
+                <!--Grid row-->
+            </form>
+            <div class="text-center text-md-left">
+                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+            </div>
+            <div class="status"></div>
+        </div>
+        <!--Grid column-->
+        <!--Grid column-->
+        <div class="col-md-3 text-center">
+            <ul class="list-unstyled mb-0">
+                <li>
+                    <i class="fas fa-map-marker-alt fa-2x"></i>
+                    <p>Bursa , Nilüfer 4/9 , Türkiye</p>
+                </li>
+                <li>
+                    <i class="fas fa-phone mt-4 fa-2x"></i>
+                    <p>+ 90 224 444 00 88</p>
+                </li>
+                <li>
+                    <i class="fas fa-envelope mt-4 fa-2x"></i>
+                    <p>bilgi@3mart.k12.tr</p>
+                </li>
+            </ul>
+        </div>
+        <!--Grid column-->
+    </div>
+</section>
+<!--Section: Contact v.2-->

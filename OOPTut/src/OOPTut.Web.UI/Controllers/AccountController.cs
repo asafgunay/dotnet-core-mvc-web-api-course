@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using OOPTut.Web.UI.Models;
 
 namespace OOPTut.Web.UI.Controllers
 {
@@ -24,6 +25,7 @@ namespace OOPTut.Web.UI.Controllers
         public IActionResult Register(RegisterModel registerModel)
         {
             // kayit etme islemleri
+            return View();
         }
     }
 }

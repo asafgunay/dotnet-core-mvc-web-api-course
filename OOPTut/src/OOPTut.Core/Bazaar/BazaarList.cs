@@ -13,10 +13,12 @@ namespace OOPTut.Core.Bazaar
         public string Title { get; set; }
         [MaxLength(160)]
         public string Description { get; set; }
-        public int CreatorUserId { get; set; }
+        [Required]
+        public string CreatorUserId { get; set; }
         public DateTime CreatedDate { get; set; }
+        public virtual ICollection<BazaarListItem> BazaarListItems { get; set; }
         // Single Responsiblity ve DRY
-        public static BazaarList Create(string title, string description, int creatorUserId)
+        public static BazaarList Create(string title, string description, string creatorUserId)
         {
             return new BazaarList
             {

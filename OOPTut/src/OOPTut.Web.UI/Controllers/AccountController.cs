@@ -29,6 +29,24 @@ namespace OOPTut.Web.UI.Controllers
         {
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Login(LoginViewModel model)
+        {
+            // 1- gelen modeli dogrula
+            if (ModelState.IsValid)
+            {
+                return View(model);
+            }
+            // 1.1- Bu kullanici adina kayitli kullanici var mi bak
+            // 1.2- Yoksa hata don
+            // 1.3- Kullanici adi ve sifre eslesmesi
+            // 1.4- Eslesmediyse hata don
+            // 1.5- Eslestiyse giri yap
+            // 2- Model hataliysa hatalariyla beraber view'a gonder
+            return View(model);
+
+        }
         public IActionResult Register()
         {
             return View();

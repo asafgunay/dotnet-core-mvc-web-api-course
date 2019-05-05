@@ -57,5 +57,37 @@ namespace OOPTut.Web.UI.Controllers
             return RedirectToAction("Index", "BazaarList");
 
         }
+
+        public async Task<ActionResult> Update(int id)
+        {
+            var model = await _bazaarListService.Get(id);
+            UpdateBazaarList updateModel = new UpdateBazaarList {
+                Id=model.Id,
+                CreatorUserId=model.CreatorUserId,
+                Description= model.Description,
+                Title=model.Title
+            };
+            return View(updateModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Update(UpdateBazaarList model)
+        {
+            if (ModelState.IsValid)
+            {
+                var updatedBazaarList = await _bazaarListService.Update(model);
+
+                UpdateBazaarList updateModel = new UpdateBazaarList
+                {
+                    Id = updatedBazaarList.Id,
+                    CreatorUserId = updatedBazaarList.CreatorUserId,
+                    Description = updatedBazaarList.Description,
+                    Title = updatedBazaarList.Title
+                };
+                return View(updateModel);
+            }
+            return View(model);
+        }
+
     }
 }

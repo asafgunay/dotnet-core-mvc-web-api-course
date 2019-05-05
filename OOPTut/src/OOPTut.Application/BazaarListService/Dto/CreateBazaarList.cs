@@ -12,7 +12,6 @@ namespace OOPTut.Application
         public string Title { get; set; }
         [MaxLength(160)]
         public string Description { get; set; }
-        [Required]
         public string CreatorUserId { get; set; }
     }
 }

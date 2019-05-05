@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OOPTut.Application\OOPTut.Application.csproj" />
     <ProjectReference Include="..\OOPTut.EntityFramework\OOPTut.EntityFramework.csproj" />
   </ItemGroup>
 

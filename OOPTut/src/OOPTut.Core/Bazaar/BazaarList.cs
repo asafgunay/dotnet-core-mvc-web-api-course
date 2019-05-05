@@ -10,11 +10,15 @@ namespace OOPTut.Core.Bazaar
         public int Id { get; set; }
         [Required]
         [MaxLength(70)]
+        [Display(Name ="Başlık")]
         public string Title { get; set; }
         [MaxLength(160)]
+        [Display(Name ="Açıklama")]
         public string Description { get; set; }
         [Required]
+        [Display(Name ="Oluşturan Kullanıcı")]
         public string CreatorUserId { get; set; }
+        [Display(Name ="Oluşturma Tarihi")]
         public DateTime CreatedDate { get; set; }
         public virtual ICollection<BazaarListItem> BazaarListItems { get; set; }
         // Single Responsiblity ve DRY

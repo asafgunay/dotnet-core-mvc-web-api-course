@@ -9,9 +9,12 @@ namespace OOPTut.Application
     {
         [Required]
         [MaxLength(70)]
+        [Display(Name ="Başlık")]
         public string Title { get; set; }
         [MaxLength(160)]
+        [Display(Name ="Açıklama")]
         public string Description { get; set; }
+        [Display(Name ="Oluşturan Kullanıcı")]
         public string CreatorUserId { get; set; }
     }
 }

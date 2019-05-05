@@ -11,7 +11,7 @@ namespace OOPTut.Application
     {
         private ApplicationUserDbContext _context;
         public BazaarListService(ApplicationUserDbContext context)
-        {
+        { 
             _context = context;
         }
 

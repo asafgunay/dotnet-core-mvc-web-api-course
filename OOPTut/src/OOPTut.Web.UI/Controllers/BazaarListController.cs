@@ -34,9 +34,28 @@ namespace OOPTut.Web.UI.Controllers
             {
                 model.CreatorUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 var newItem = await _bazaarListService.Create(model);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "BazaarList");
             }
             return View();
+        }
+        public async Task<ActionResult> Delete(int id)
+        {
+            return View(await _bazaarListService.Get(id));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirm(DeleteBazaarList model)
+        {
+            if (ModelState.IsValid)
+            {
+                // silme islemini yap 
+                await _bazaarListService.Delete(model.Id);
+            }
+            // ve
+
+            // liste sayfasina gonder
+            return RedirectToAction("Index", "BazaarList");
+
         }
     }
 }

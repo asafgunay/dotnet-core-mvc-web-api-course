@@ -1,0 +1,48 @@
+﻿@model OOPTut.Core.Bazaar.BazaarList
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<div>
+    <h4>BazaarList</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatorUserId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreatorUserId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <form asp-action="DeleteConfirm" asp-controller="BazaarList" method="post">
+        <h2>Silmek istediginize emin misiniz</h2>
+        <input type="hidden" value="@Model.Id" name="Id" />
+        <button type="submit" class="btn btn-warning navbar-btn navbar-link">Sil</button>
+    </form>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

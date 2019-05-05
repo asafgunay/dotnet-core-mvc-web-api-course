@@ -26,12 +26,16 @@ namespace OOPTut.Application
 
         public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var item = await Get(id);
+            _context.BazaarLists.Remove(item);
+            await _context.SaveChangesAsync();
+
         }
 
         public async Task<BazaarList> Get(int id)
         {
-            throw new NotImplementedException();
+            var item = await _context.BazaarLists.FindAsync(id);
+            return item;
         }
 
         public async Task<List<BazaarList>> GetAll()

@@ -32,8 +32,16 @@ namespace OOPTut.Web.UI
             });
             services.AddDbContext<ApplicationUserDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>()
-                .AddEntityFrameworkStores<ApplicationUserDbContext>();
+            // Identity template ile gelen login/register template ini kapatmak icin yorum satiri yap
+            //services.AddDefaultIdentity<ApplicationUser>()
+            //    .AddEntityFrameworkStores<ApplicationUserDbContext>();
+
+            // Bizim olusturdugumuz template'i ekle
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+          .AddEntityFrameworkStores<ApplicationUserDbContext>();
+
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/LogIn");
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -44,7 +52,6 @@ namespace OOPTut.Web.UI
             });
 
             services.AddScoped<IBazaarListService, BazaarListService>();
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

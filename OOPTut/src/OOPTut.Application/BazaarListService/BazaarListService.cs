@@ -20,6 +20,7 @@ namespace OOPTut.Application
         {
             BazaarList newBazaarList = BazaarList.Create(input.Title, input.Description, input.CreatorUserId);
             await _context.BazaarLists.AddAsync(newBazaarList);
+            await _context.SaveChangesAsync();
             return newBazaarList;
         }
 

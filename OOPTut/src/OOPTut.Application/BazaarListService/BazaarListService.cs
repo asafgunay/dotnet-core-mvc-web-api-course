@@ -1,16 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using OOPTut.Core.Bazaar;
+using OOPTut.EntityFramework.Contexts;
 
 namespace OOPTut.Application
 {
     public class BazaarListService : IBazaarListService
     {
+        private ApplicationUserDbContext _context;
+        public BazaarListService(ApplicationUserDbContext context)
+        {
+            _context = context;
+        }
+
+
         public async Task<BazaarList> Create(CreateBazaarList input)
         {
-            throw new NotImplementedException();
+            BazaarList newBazaarList = BazaarList.Create(input.Title, input.Description, input.CreatorUserId);
+            await _context.BazaarLists.AddAsync(newBazaarList);
+            return newBazaarList;
         }
 
         public async Task Delete(int id)
@@ -25,7 +35,9 @@ namespace OOPTut.Application
 
         public async Task<List<BazaarList>> GetAll()
         {
-            throw new NotImplementedException();
+            // veritabani icerisindek bazaarLists tablosunun tum satirlarini liste halinde dön
+            var list = await _context.BazaarLists.ToListAsync();
+            return list;
         }
 
         public async Task<BazaarList> Update(UpdateBazaarList input)

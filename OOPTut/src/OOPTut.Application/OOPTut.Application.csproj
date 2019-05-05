@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OOPTut.Core\OOPTut.Core.csproj" />
+    <ProjectReference Include="..\OOPTut.EntityFramework\OOPTut.EntityFramework.csproj" />
   </ItemGroup>
 
 </Project>

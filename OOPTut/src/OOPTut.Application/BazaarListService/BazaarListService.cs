@@ -47,7 +47,12 @@ namespace OOPTut.Application
 
         public async Task<BazaarList> Update(UpdateBazaarList input)
         {
-            throw new NotImplementedException();
+            var updateBazaarList = await Get(input.Id);
+            updateBazaarList.Title = input.Title;
+            updateBazaarList.Description = input.Description;
+            _context.BazaarLists.Update(updateBazaarList);
+            await _context.SaveChangesAsync();
+            return updateBazaarList;
         }
     }
 }

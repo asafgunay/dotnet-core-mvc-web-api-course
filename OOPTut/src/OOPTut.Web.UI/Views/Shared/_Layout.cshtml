@@ -33,7 +33,41 @@
     <link href="~/css/product.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="site-header sticky-top py-1">
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light navbar-custom">
+        <a class="navbar-brand" href="#">
+        <img class="site-logo" src="~/img/harvest.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+
+            </ul>
+            @await Html.PartialAsync("_LoginPartial")
+
+
+        </div>
+    </nav>
+    @*<nav class="site-header sticky-top py-1">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
             <a class="py-2" href="#">
 
@@ -46,10 +80,10 @@
             <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
             <a class="py-2 d-none d-md-inline-block" asp-action="About" asp-controller="Home">Hakkımızda</a>
             <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
-            @await  Html.PartialAsync("_LoginPartial")
+            @await Html.PartialAsync("_LoginPartial")
         </div>
 
-    </nav>
+    </nav>*@
 
     <div class="position-relative overflow-hidden p-3 p-md-5 text-center bg-dark text-light slider-bg">
         <div class="col-md-6 p-lg-6 mx-auto my-5">
@@ -57,7 +91,7 @@
             <p class="lead font-weight-normal">Artık pırasayı almayı unuttum yok patates pahalıydı dertlerine son! Uygulamamız pek yakında App Store ve Play Store'da yayında(!)</p>
             <a class="btn btn-outline-secondary btn-light" href="#">Giriş Yap</a>
         </div>
-        
+
     </div>
     <div class="container-fluid">
         @RenderBody()

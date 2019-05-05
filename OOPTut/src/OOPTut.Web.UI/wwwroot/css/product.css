@@ -6,7 +6,7 @@
  * Custom translucent site header
  */
 .site-logo {
-    position: absolute;
+    /*position: absolute;*/
     top: 4px;
     width: 2.5rem;
 }
@@ -60,12 +60,12 @@
     left: 5%;
     background-color: #e5e5e5;
 }
-
-
+.navbar-custom {
+    background-color: rgba(236, 236, 236, 0.85) !important;
+}
 /*
  * Extra utilities
  */
-
 .flex-equal > * {
     -ms-flex: 1;
     flex: 1;

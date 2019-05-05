@@ -13,7 +13,7 @@
                 <span>Merhaba @User.Identity.Name</span>
             </li>
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Çıkış</button>
+                <button type="submit" class="btn btn-warning navbar-btn navbar-link">Çıkış</button>
             </li>
         </ul>
     </form>
@@ -22,11 +22,11 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            <a asp-action="Login" asp-controller="Account">Giriş</a>
+        <li class="pr-2">
+            <a class="btn btn-outline-primary" asp-action="Login" asp-controller="Account">Giriş</a>
         </li>
         <li>
-            <a asp-action="Register" asp-controller="Account">Kayıt ol</a>
+            <a class="btn btn-outline-primary" asp-action="Register" asp-controller="Account">Kayıt ol</a>
         </li>
     </ul>
 }

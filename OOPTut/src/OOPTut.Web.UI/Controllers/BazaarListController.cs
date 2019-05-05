@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OOPTut.Application;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace OOPTut.Web.UI.Controllers
@@ -31,7 +32,7 @@ namespace OOPTut.Web.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                // model.CreatorUserId = User.Identity.Name;
+                model.CreatorUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 var newItem = await _bazaarListService.Create(model);
                 return RedirectToAction("Index");
             }

@@ -22,7 +22,7 @@ namespace OOPTut.Web.UI.Controllers
         {
             return View(await _bazaarListService.GetAll());
         }
-        public async Task<ActionResult> Create()
+        public ActionResult Create()
         {
             return View();
         }

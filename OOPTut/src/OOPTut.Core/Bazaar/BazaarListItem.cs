@@ -12,6 +12,7 @@ namespace OOPTut.Core.Bazaar
         [Required]
         public string Name { get; set; }
         public bool IsCompleted { get; set; } = false;
+        public bool IsCanceled { get; set; }
         [ForeignKey("BazaarListId")]
         public virtual BazaarList BazaarList { get; set; }
         public virtual int BazaarListId { get; set; }
@@ -27,7 +28,8 @@ namespace OOPTut.Core.Bazaar
                 BazaarListId = bazaarListId,
                 CreatorUserId = creatorUserId,
                 CreatedDate = DateTime.Now,
-                IsCompleted = false
+                IsCompleted = false,
+                IsCanceled =false
             };
         }
 

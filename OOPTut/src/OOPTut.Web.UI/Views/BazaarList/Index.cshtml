@@ -10,7 +10,7 @@
 <h1>Pazar Listeleri</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Yeni bir pazar listesi oluştur</a>
 </p>
 <table class="table">
     <thead>
@@ -51,9 +51,9 @@
                     
 
         <a asp-action="Update" asp-route-id="@item.Id">Güncelle</a> |
-        @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+        <a asp-action="Index" asp-controller="BazaarListItem" asp-route-id="@item.Id">Detaylar</a> |
                     
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
                 </td>
             </tr>
         }

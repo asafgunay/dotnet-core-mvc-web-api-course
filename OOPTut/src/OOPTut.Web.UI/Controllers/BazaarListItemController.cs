@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OOPTut.Application.BazaarListItemServices;
 using OOPTut.Application.BazaarListItemServices.Dto;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace OOPTut.Web.UI.Controllers
@@ -35,12 +36,19 @@ namespace OOPTut.Web.UI.Controllers
             return View(model);
         }
         [HttpPost]
-        public IActionResult Create(int id, CreateBazaarListItem model)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAsync(int id, CreateBazaarListItem model)
         {
-            // CreateBazaarListItem model
-            // model.CreatorUserId atamasını yap
-            // oluşan model servis katmanina gonder
-            return View();
+            if (ModelState.IsValid)
+            {
+                // CreateBazaarListItem model
+                // model.CreatorUserId atamasını yap
+                model.CreatorUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                // oluşan model servis katmanina gonder
+                var createdItem = await _bazaarListItemService.CreateAsync(model);
+                return RedirectToAction("Index", new { id = model.BazaarListId });
+            }
+            return View(model);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using OOPTut.Application.BazaarListItemServices.Dto;
 using OOPTut.Core.Bazaar;
 using OOPTut.EntityFramework.Contexts;
 
@@ -16,6 +17,15 @@ namespace OOPTut.Application.BazaarListItemServices
         public BazaarListItemService(ApplicationUserDbContext context)
         {
             _context = context;
+        }
+
+        public async Task<BazaarListItem> CreateAsync(CreateBazaarListItem input)
+        {
+            var item = BazaarListItem.Create(input.Name, input.BazaarListId, input.CreatorUserId);
+
+            await _context.BazaarListItems.AddAsync(item);
+            await _context.SaveChangesAsync();
+            return item;
         }
 
         public async Task<List<BazaarListItem>> GetAllByIdAsync(int bazaarListId)

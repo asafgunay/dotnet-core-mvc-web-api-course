@@ -39,5 +39,16 @@ namespace OOPTut.Application.BazaarListItemServices
             return result;
             //
         }
+
+        public async Task<BazaarListItem> UpdateAsync(UpdateBazaarListItem input)
+        {
+            var willUpdate = await _context.BazaarListItems.FindAsync(input.Id);
+            willUpdate.IsCanceled = input.IsCanceled;
+            willUpdate.IsCompleted = input.IsCompleted;
+            willUpdate.Name = input.Name;
+            _context.BazaarListItems.Update(willUpdate);
+            await _context.SaveChangesAsync();
+            return willUpdate;
+        }
     }
 }

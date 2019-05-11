@@ -28,6 +28,11 @@ namespace OOPTut.Application.BazaarListItemServices
             return item;
         }
 
+        public async Task<BazaarListItem> GetAsync(int id)
+        {
+            return await _context.BazaarListItems.FindAsync(id);
+        }
+
         public async Task<List<BazaarListItem>> GetAllByIdAsync(int bazaarListId)
         {
             // List<BazaarListItem> içine veritabanından ilgili satırlar gönderilecek ve return edilecek
@@ -42,7 +47,7 @@ namespace OOPTut.Application.BazaarListItemServices
 
         public async Task<BazaarListItem> UpdateAsync(UpdateBazaarListItem input)
         {
-            var willUpdate = await _context.BazaarListItems.FindAsync(input.Id);
+            var willUpdate = await GetAsync(input.Id);
             willUpdate.IsCanceled = input.IsCanceled;
             willUpdate.IsCompleted = input.IsCompleted;
             willUpdate.Name = input.Name;

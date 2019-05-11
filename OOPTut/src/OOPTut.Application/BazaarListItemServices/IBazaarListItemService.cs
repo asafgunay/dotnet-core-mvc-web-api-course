@@ -11,5 +11,6 @@ namespace OOPTut.Application.BazaarListItemServices
 
         Task<BazaarListItem> CreateAsync (CreateBazaarListItem input);
         Task<BazaarListItem> UpdateAsync(UpdateBazaarListItem input);
+        Task<BazaarListItem> GetAsync(int id);
     }
 }

@@ -50,5 +50,19 @@ namespace OOPTut.Web.UI.Controllers
             }
             return View(model);
         }
+        public async Task<IActionResult> Update(int id)
+        {
+            var existItem = await _bazaarListItemService.GetAsync(id);
+            UpdateBazaarListItem model = new UpdateBazaarListItem
+            {
+                Id = existItem.Id,
+                BazaarListId = existItem.BazaarListId,
+                CreatorUserId = existItem.CreatorUserId,
+                IsCanceled = existItem.IsCanceled,
+                IsCompleted = existItem.IsCompleted,
+                Name = existItem.Name
+            };
+            return View(model);
+        }
     }
 }

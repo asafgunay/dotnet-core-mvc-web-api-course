@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OOPTut.Application;
+using OOPTut.Application.BazaarListItemServices;
 using OOPTut.Core.Users;
 using OOPTut.EntityFramework.Contexts;
 
@@ -52,6 +53,7 @@ namespace OOPTut.Web.UI
             });
 
             services.AddScoped<IBazaarListService, BazaarListService>();
+            services.AddScoped<IBazaarListItemService, BazaarListItemService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

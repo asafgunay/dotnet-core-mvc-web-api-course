@@ -1,16 +1,28 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OOPTut.Application.BazaarListItemServices;
 using OOPTut.Application.BazaarListItemServices.Dto;
+using System.Threading.Tasks;
 
 namespace OOPTut.Web.UI.Controllers
 {
     [Authorize]
     public class BazaarListItemController : Controller
     {
-        public IActionResult Index(int id)
+
+        private readonly IBazaarListItemService _bazaarListItemService;
+
+        public BazaarListItemController(IBazaarListItemService bazaarListItemService)
         {
-            // 1- servis katmaninda GetAllByIdAsync diye bir metod olusturun ve bu metod gelen bazaarListId parametresine gore ilgili bazaarListItem'leri ceksin 
-            return View();
+            _bazaarListItemService = bazaarListItemService;
+        }
+
+        public async Task<IActionResult> Index(int id)
+        {
+            // 1- servis katmaninda GetAllByIdAsync diye bir metod olusturun ve bu metod gelen bazaarListId parametresine gore ilgili bazaarListItem'leri ceksin
+            var list = await _bazaarListItemService.GetAllByIdAsync(id);
+            ViewBag.BazaarListItemId = id;
+            return View(list);
         }
         //[HttpGet("{id}")]
         public IActionResult Create(int id)

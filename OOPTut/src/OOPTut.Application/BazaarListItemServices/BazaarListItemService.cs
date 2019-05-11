@@ -31,8 +31,11 @@ namespace OOPTut.Application.BazaarListItemServices
         public async Task<List<BazaarListItem>> GetAllByIdAsync(int bazaarListId)
         {
             // List<BazaarListItem> içine veritabanından ilgili satırlar gönderilecek ve return edilecek
-            List<BazaarListItem> result = await (from u in _context.BazaarListItems where u.BazaarListId == bazaarListId select u).ToListAsync();
-            // List<BazaarListItem> result = await _context.BazaarListItems.Where(x => x.BazaarListId == bazaarListId).ToListAsync();
+            //List<BazaarListItem> result = await (from u in _context.BazaarListItems where u.BazaarListId == bazaarListId select u).ToListAsync();
+            List<BazaarListItem> result = await _context.BazaarListItems
+                .Where(x => x.BazaarListId == bazaarListId)
+                .Include(i => i.BazaarList)
+                .ToListAsync();
             return result;
             //
         }

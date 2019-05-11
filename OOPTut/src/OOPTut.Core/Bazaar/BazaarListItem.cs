@@ -10,9 +10,13 @@ namespace OOPTut.Core.Bazaar
     {
         public int Id { get; set; }
         [Required]
+        [Display(Name="Adı")]
         public string Name { get; set; }
+        [Display(Name="Tamamlandı")]
         public bool IsCompleted { get; set; } = false;
+        [Display(Name="İptal")]
         public bool IsCanceled { get; set; }
+        [Display(Name="Liste Adı")]
         [ForeignKey("BazaarListId")]
         public virtual BazaarList BazaarList { get; set; }
         public virtual int BazaarListId { get; set; }

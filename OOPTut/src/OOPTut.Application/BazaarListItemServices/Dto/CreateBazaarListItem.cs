@@ -13,5 +13,6 @@ namespace OOPTut.Application.BazaarListItemServices.Dto
         public string Name { get; set; }
         [Required]
         public int BazaarListId { get; set; }
+        public string CreatorUserId { get; set; }
     }
 }

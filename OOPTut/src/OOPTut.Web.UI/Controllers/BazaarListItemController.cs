@@ -38,7 +38,8 @@ namespace OOPTut.Web.UI.Controllers
         public IActionResult Create(int id, CreateBazaarListItem model)
         {
             // CreateBazaarListItem model
-            // servis katmani
+            // model.CreatorUserId atamasını yap
+            // oluşan model servis katmanina gonder
             return View();
         }
     }

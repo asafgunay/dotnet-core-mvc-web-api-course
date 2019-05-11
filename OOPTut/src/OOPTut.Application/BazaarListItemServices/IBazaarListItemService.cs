@@ -1,4 +1,5 @@
-﻿using OOPTut.Core.Bazaar;
+﻿using OOPTut.Application.BazaarListItemServices.Dto;
+using OOPTut.Core.Bazaar;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,5 +9,6 @@ namespace OOPTut.Application.BazaarListItemServices
     {
         Task<List<BazaarListItem>> GetAllByIdAsync(int bazaarListId);
 
+        Task<BazaarListItem> CreateAsync (CreateBazaarListItem input);
     }
 }

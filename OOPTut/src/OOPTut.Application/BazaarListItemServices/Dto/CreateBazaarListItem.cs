@@ -7,9 +7,11 @@ namespace OOPTut.Application.BazaarListItemServices.Dto
 {
     public class CreateBazaarListItem
     {
-        [Required]
+        [Required(ErrorMessage ="Ad alani zorunlu")]
+        [Display(Name = "Adı")]
+        [MaxLength(70)]
         public string Name { get; set; }
-      
+        [Required]
         public int BazaarListId { get; set; }
     }
 }

@@ -55,5 +55,12 @@ namespace OOPTut.Application.BazaarListItemServices
             await _context.SaveChangesAsync();
             return willUpdate;
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            var willDeleted = await GetAsync(id);
+            _context.BazaarListItems.Remove(willDeleted);
+            await _context.SaveChangesAsync();
+        }
     }
 }

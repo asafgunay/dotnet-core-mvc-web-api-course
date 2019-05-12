@@ -54,5 +54,6 @@ namespace OOPTut.Application
             await _context.SaveChangesAsync();
             return updateBazaarList;
         }
+
     }
 }

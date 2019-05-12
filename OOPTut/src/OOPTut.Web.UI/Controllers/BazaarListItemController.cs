@@ -64,5 +64,39 @@ namespace OOPTut.Web.UI.Controllers
             };
             return View(model);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(UpdateBazaarListItem model)
+        {
+            if (ModelState.IsValid)
+            {
+                var updated = await _bazaarListItemService.UpdateAsync(model);
+                UpdateBazaarListItem newModel = new UpdateBazaarListItem
+                {
+                    Id=updated.Id,
+                    BazaarListId= updated.BazaarListId,
+                    CreatorUserId=updated.CreatorUserId,
+                    IsCanceled=updated.IsCanceled,
+                    IsCompleted=updated.IsCompleted
+                };
+                return View(newModel);
+            }
+            return View(model);
+        }
+        public async Task<IActionResult> Delete(int id)
+        {
+            return View(await _bazaarListItemService.GetAsync(id));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(DeleteBazaarListItem model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _bazaarListItemService.DeleteAsync(model.Id);
+                return RedirectToAction("Index", new { id = model.BazaarListId });
+            }
+            return RedirectToAction("Delete", new { id = model.Id });
+        }
     }
 }

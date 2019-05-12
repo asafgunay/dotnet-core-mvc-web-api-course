@@ -41,7 +41,9 @@ namespace OOPTut.Application
         public async Task<List<BazaarList>> GetAll()
         {
             // veritabani icerisindek bazaarLists tablosunun tum satirlarini liste halinde dön
-            var list = await _context.BazaarLists.ToListAsync();
+            var list = await _context.BazaarLists
+                .Include(x=>x.BazaarListItems)
+                .ToListAsync();
             return list;
         }
 

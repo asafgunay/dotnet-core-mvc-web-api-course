@@ -25,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.CreatorUserId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
+                Ürün Sayısı
             </th>
             <th></th>
         </tr>
@@ -45,14 +45,14 @@
                     @UserManager.FindByIdAsync(item.CreatorUserId).Result.UserName
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                    @item.BazaarListItems.Count()
                 </td>
                 <td>
-                    
 
-        <a asp-action="Update" asp-route-id="@item.Id">Güncelle</a> |
-        <a asp-action="Index" asp-controller="BazaarListItem" asp-route-id="@item.Id">Detaylar</a> |
-                    
+
+                    <a asp-action="Update" asp-route-id="@item.Id">Güncelle</a> |
+                    <a asp-action="Index" asp-controller="BazaarListItem" asp-route-id="@item.Id">Detaylar</a> |
+
                     <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
                 </td>
             </tr>

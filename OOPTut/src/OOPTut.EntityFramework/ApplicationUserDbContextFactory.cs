@@ -21,7 +21,7 @@ namespace OOPTut.EntityFramework
                 .Build()
                 .GetConnectionString("DatabaseConnection")
                 ).Options);
-            dbContext.Database.Migrate();
+            // dbContext.Database.Migrate();
             return dbContext;
         }
 

@@ -91,6 +91,7 @@ namespace OOPTut.Web.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseCors("Cors");
+            app.UseAuthentication();
 
 
             if (env.IsDevelopment())

@@ -27,6 +27,15 @@
             <th>
                 Ürün Sayısı
             </th>
+            <th>
+                Tamamlanan
+            </th>
+            <th>
+                İptal
+            </th>
+            <th>
+                Başarılı
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -46,6 +55,45 @@
                 </td>
                 <td>
                     @item.BazaarListItems.Count()
+                </td>
+                <td>
+                    @*tamamlanan*@
+                    @item.BazaarListItems.Where(x => x.IsCompleted == true).Count()
+                    @{
+                        // 1. uzun yol
+                        //int tamamlanan = 0;
+                        //foreach(var listItem in item.BazaarListItems)
+                        //{
+                        //    if (listItem.IsCompleted)
+                        //    {
+                        //        tamamlanan++;
+                        //    }
+                        //}
+
+                        // 2. linq ile kolay ve kisa
+                        //int tamamlanan = item.BazaarListItems.Where(x => x.IsCompleted == true).Count();
+                    }
+                </td>
+                <td>
+                    @*iptal edilen*@
+
+                    @item.BazaarListItems.Where(x => x.IsCanceled == true).Count()
+                </td>
+                <td>
+                    @*liste başarılı mı*@
+                    @{
+                        int islemGoren = item.BazaarListItems.Where(x => x.IsCanceled == true || x.IsCompleted == true).Count();
+                        int toplamUrun = item.BazaarListItems.Count();
+                        if (islemGoren == toplamUrun)
+                        {
+                            <span>Başarılı</span>
+                        }
+                        else
+                        {
+                            <span>Devam Ediyor</span>
+                        }
+                    }
+
                 </td>
                 <td>
 

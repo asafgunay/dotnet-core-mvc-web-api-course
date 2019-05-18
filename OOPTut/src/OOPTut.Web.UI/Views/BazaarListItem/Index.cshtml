@@ -25,41 +25,58 @@
                 @Html.DisplayNameFor(model => model.BazaarList)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.CreatorUserId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.CreatorUserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsCompleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsCanceled)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BazaarList.Title)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.CreatorUserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>*@
-            <td>
-                <a asp-action="Update" asp-route-id="@item.Id">Düzenle</a> @*|
-        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @{
+            string className = "";
+
+        }
+        @foreach (var item in Model)
+        {
+            if (item.IsCanceled)
+            {
+                className = "bg-danger";
+            }
+            else if (item.IsCompleted)
+            {
+                className = "bg-success";
+            }
+            else
+            {
+                className = "";
+            }
+            <tr class="@className">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCompleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCanceled)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BazaarList.Title)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CreatorUserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>*@
+                <td>
+                    <a asp-action="Update" asp-route-id="@item.Id">Düzenle</a> @*|
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using OOPTut.Application;
+using OOPTut.Application.BazaarListItemServices;
 using OOPTut.Core.Users;
 using OOPTut.EntityFramework.Contexts;
 using System.Text;
@@ -80,6 +82,10 @@ namespace OOPTut.Web.Api
 
             // Add Authentication -- Auth/Token Yonetimi
 
+
+            services.AddScoped<IBazaarListService, BazaarListService>();
+
+            services.AddScoped<IBazaarListItemService, BazaarListItemService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options =>
             {

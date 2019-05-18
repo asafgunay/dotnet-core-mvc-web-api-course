@@ -52,7 +52,11 @@ namespace OOPTut.Web.UI
                 options.Password.RequiredUniqueChars = 1;
             });
 
+
             services.AddScoped<IBazaarListService, BazaarListService>();
+            //services.AddTransient<IBazaarListService, BazaarListService>();
+            //services.AddSingleton<IBazaarListService, BazaarListService>();
+
             services.AddScoped<IBazaarListItemService, BazaarListItemService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

@@ -20,21 +20,40 @@ namespace OOPTut.Web.Api.Controllers
         // servisAdi.MetodAdi(parametreler varsa?);
         // _bazaarListService.GetAll()
         [HttpGet]
-        public async Task<ActionResult<List<BazaarList>>> GetAll(){
+        public async Task<ActionResult<List<BazaarList>>> GetAll()
+        {
             return await _bazaarListService.GetAll();
         }
 
 
-        // [HttpGet({"id"})]
         // istek yapildiginda id ye sahip tek öğeyi dönecek
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BazaarList>> Get(int id)
+        {
+            return await _bazaarListService.Get(id);
+        }
 
-        // [HttpPost]
+        [HttpPost]
         // Yeni kayit olusturur
+        public async Task<ActionResult<BazaarList>> Create(CreateBazaarList input)
+        {
+            return await _bazaarListService.Create(input);
+        }
 
-        // [HttpPut]
         // Update yapar
+        [HttpPut]
+        public async Task<ActionResult<BazaarList>> Update(UpdateBazaarList input)
+        {
+            return await _bazaarListService.Update(input);
+        }
 
-        // [HttpDelete({"id"})]
+
         // Silme yapar 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            await _bazaarListService.Delete(id);
+            return Ok();
+        }
     }
 }

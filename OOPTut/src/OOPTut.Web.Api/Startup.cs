@@ -12,6 +12,7 @@ using OOPTut.Application;
 using OOPTut.Application.BazaarListItemServices;
 using OOPTut.Core.Users;
 using OOPTut.EntityFramework.Contexts;
+using Swashbuckle.AspNetCore.Swagger;
 using System.Text;
 
 namespace OOPTut.Web.Api
@@ -28,6 +29,7 @@ namespace OOPTut.Web.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region CORS
             // CORS  -- tarayıcı tabanlı güvenlik önlemi
 
             services.AddCors(options => options.AddPolicy("Cors", builder =>
@@ -37,8 +39,13 @@ namespace OOPTut.Web.Api
                 .AllowAnyMethod()
                 .AllowAnyHeader();
             }));
+            #endregion
 
+            #region DbContext
             services.AddDbContext<ApplicationUserDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+            #endregion
+
+            #region Identity & JWT Configuration
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationUserDbContext>();
@@ -78,19 +85,43 @@ namespace OOPTut.Web.Api
                 options.Password.RequiredUniqueChars = 1;
             });
 
+            #endregion
 
-
-            // Add Authentication -- Auth/Token Yonetimi
-
-
+            #region OOPTut.Application --> Services
             services.AddScoped<IBazaarListService, BazaarListService>();
 
             services.AddScoped<IBazaarListItemService, BazaarListItemService>();
+            #endregion
 
+
+            #region Swagger
+
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("OOPTutApi", new Info
+                {
+                    Title = "Pazar Listesi Uygulamasi API Dokumantasyonu",
+                    Version = "0.0.1",
+                    Contact = new Contact
+                    {
+                        Email = "info@kodluyoruz.org",
+                        Name = "Bilgin Kahraman",
+                        Url = "kodluyoruz.org"
+                    },
+                    Description = "Pazar Listesi uygulamasinin gerekli olan tum servislerini icerir",
+                    TermsOfService = "kodluyoruz.org/privacy"
+                });
+
+            });
+            #endregion
+
+
+            #region MVC Structure
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,6 +140,13 @@ namespace OOPTut.Web.Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            #region Swagger UI
+            app.UseSwagger().UseSwaggerUI(u =>
+            {
+                u.SwaggerEndpoint("/swagger/OOPTutApi/swagger.json", "Swagger Test Api Endpoint");
+            });
+            #endregion
 
             app.UseHttpsRedirection();
             app.UseMvc();

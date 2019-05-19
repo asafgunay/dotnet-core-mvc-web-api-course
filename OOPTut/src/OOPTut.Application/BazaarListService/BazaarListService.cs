@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OOPTut.Core.Bazaar;
@@ -11,7 +12,7 @@ namespace OOPTut.Application
     {
         private ApplicationUserDbContext _context;
         public BazaarListService(ApplicationUserDbContext context)
-        { 
+        {
             _context = context;
         }
 
@@ -34,7 +35,11 @@ namespace OOPTut.Application
 
         public async Task<BazaarList> Get(int id)
         {
-            var item = await _context.BazaarLists.FindAsync(id);
+            var item = await _context
+                .BazaarLists
+                .Where(x => x.Id == id)
+                .Include(x => x.BazaarListItems)
+                .FirstOrDefaultAsync();
             return item;
         }
 
@@ -42,7 +47,7 @@ namespace OOPTut.Application
         {
             // veritabani icerisindek bazaarLists tablosunun tum satirlarini liste halinde dön
             var list = await _context.BazaarLists
-                .Include(x=>x.BazaarListItems)
+                .Include(x => x.BazaarListItems)
                 .ToListAsync();
             return list;
         }

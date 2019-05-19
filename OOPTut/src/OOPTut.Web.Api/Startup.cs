@@ -13,6 +13,7 @@ using OOPTut.Application.BazaarListItemServices;
 using OOPTut.Core.Users;
 using OOPTut.EntityFramework.Contexts;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Collections.Generic;
 using System.Text;
 
 namespace OOPTut.Web.Api
@@ -111,6 +112,22 @@ namespace OOPTut.Web.Api
                     Description = "Pazar Listesi uygulamasinin gerekli olan tum servislerini icerir",
                     TermsOfService = "kodluyoruz.org/privacy"
                 });
+
+                // JWT integration
+                var security = new Dictionary<string, IEnumerable<string>>
+                {
+                    {"Bearer", new string[]{ } },
+                };
+
+                s.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                {
+                    Type = "apiKey",
+                    Description = "JWT Auth",
+                    In = "header",
+                    Name = "Authorization"
+                });
+
+                s.AddSecurityRequirement(security);
 
             });
             #endregion

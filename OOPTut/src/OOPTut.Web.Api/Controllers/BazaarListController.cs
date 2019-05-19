@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OOPTut.Application;
 using OOPTut.Core.Bazaar;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace OOPTut.Web.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BazaarListController : ControllerBase
     {
         private readonly IBazaarListService _bazaarListService;

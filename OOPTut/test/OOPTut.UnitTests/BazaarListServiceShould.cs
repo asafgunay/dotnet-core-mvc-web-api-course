@@ -79,5 +79,59 @@ namespace OOPTut.UnitTests
             }
         }
 
+        [Fact]
+        public async Task Update()
+        {
+            // set context / contexti ayarla
+            var options = new DbContextOptionsBuilder<ApplicationUserDbContext>().UseInMemoryDatabase(databaseName: "TestUpdate_Context").Options;
+            // declare id variable / id diye bir degisken tanimla
+            int id = 0;
+            // first scope / ilk context scope u
+            using (var inMemoryContext = new ApplicationUserDbContext(options))
+            {
+                // create
+                // test edecegimiz servisin context ini ayarlar 
+                var service = new BazaarListService(inMemoryContext);
+
+                // Create metodu test edilecek
+                // Parametresini olusturalim
+                CreateBazaarList testInput = new CreateBazaarList
+                {
+                    CreatorUserId = Guid.NewGuid().ToString(),
+                    Description = "Test_Aciklama",
+                    Title = "Test_Baslik"
+                };
+                // fake data ile metodu calistir.
+                var createResponse = await service.Create(testInput);
+                // set id variable / id yi ayarla
+                id = createResponse.Id;
+            }
+
+            // second scope
+            using (var inMemoryContext = new ApplicationUserDbContext(options))
+            {
+                // update / update i calistir
+                var service = new BazaarListService(inMemoryContext);
+                UpdateBazaarList input = new UpdateBazaarList
+                {
+                    CreatorUserId = Guid.NewGuid().ToString(),
+                    Description = "Test_Aciklama_Guncel",
+                    Title = "Test_Baslik_Guncel",
+                    Id =id
+                };
+                await service.Update(input);
+            }
+
+            // third scope
+            using (var inMemoryContext = new ApplicationUserDbContext(options))
+            {
+                // get / get ile datayi cek
+                var service = new BazaarListService(inMemoryContext);
+                var getResponse = await service.Get(id);
+                // asserts
+                Assert.Equal("Test_Baslik_Guncel", getResponse.Title);
+                Assert.Equal("Test_Aciklama_Guncel", getResponse.Description);
+            }
+        }
     }
 }

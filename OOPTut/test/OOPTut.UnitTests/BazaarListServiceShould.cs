@@ -20,23 +20,43 @@ namespace OOPTut.UnitTests
             inMemoryContext = new ApplicationUserDbContext(options);
             service = new BazaarListService(inMemoryContext);
         }
+
+        private async Task CreateFirst()
+        {
+            var count = await inMemoryContext.BazaarLists.CountAsync();
+            // Parametresini olusturalim
+            if (count > 1)
+            {
+                await CleanAll();
+                await CreateFirst();
+            }
+            if (count == 0)
+            {
+                CreateBazaarList testInput = new CreateBazaarList
+                {
+                    CreatorUserId = Guid.NewGuid().ToString(),
+                    Description = "Test_Aciklama",
+                    Title = "Test_Baslik"
+                };
+                // fake data ile metodu calistir.
+                await service.Create(testInput);
+            }
+            
+        }
+
+        private async Task CleanAll()
+        {
+            var getAll = await service.GetAll();
+            inMemoryContext.RemoveRange(getAll);
+            await inMemoryContext.SaveChangesAsync();
+        }
+
         [Fact]
         public async Task Create()
         {
+            await CreateFirst();
             // Create metodu test edilecek
-            // Parametresini olusturalim
-            CreateBazaarList testInput = new CreateBazaarList
-            {
-                CreatorUserId = Guid.NewGuid().ToString(),
-                Description = "Test_Aciklama",
-                Title = "Test_Baslik"
-            };
-            // fake data ile metodu calistir.
-            await service.Create(testInput);
-
             // olusturulan fake datanin durumunu test et
-
-
             // Assert bir test sorgusu cesididir sorgu basariliysa test adimi da basarilidir.
             // Assert.Equal degerlerin birebir esit olup olmadigini kontrol eder.
             Assert.Equal(1, await inMemoryContext.BazaarLists.CountAsync());
@@ -52,16 +72,11 @@ namespace OOPTut.UnitTests
 
             var getResponse = new BazaarList();
             // Create metodu test edilecek
-            // Parametresini olusturalim
-            CreateBazaarList testInput = new CreateBazaarList
-            {
-                CreatorUserId = Guid.NewGuid().ToString(),
-                Description = "Test_Aciklama",
-                Title = "Test_Baslik"
-            };
-            // fake data ile metodu calistir.
-            var createResponse = await service.Create(testInput);
-            getResponse = await service.Get(createResponse.Id);
+            await CreateFirst();
+
+
+            var firstData = await inMemoryContext.BazaarLists.FirstAsync();
+            getResponse = await service.Get(firstData.Id);
 
             Assert.Equal(1, await inMemoryContext.BazaarLists.CountAsync());
             Assert.Equal("Test_Baslik", getResponse.Title);
@@ -71,23 +86,16 @@ namespace OOPTut.UnitTests
         [Fact]
         public async Task Update()
         {
+
             // set context / contexti ayarla
             // declare id variable / id diye bir degisken tanimla
             int id = 0;
             // first scope / ilk context scope u
             // create
-            // Create metodu test edilecek
-            // Parametresini olusturalim
-            CreateBazaarList testInput = new CreateBazaarList
-            {
-                CreatorUserId = Guid.NewGuid().ToString(),
-                Description = "Test_Aciklama",
-                Title = "Test_Baslik"
-            };
-            // fake data ile metodu calistir.
-            var createResponse = await service.Create(testInput);
+            await CreateFirst();
+            var firstData = await inMemoryContext.BazaarLists.FirstAsync();
             // set id variable / id yi ayarla
-            id = createResponse.Id;
+            id = firstData.Id;
             // update / update i calistir
             UpdateBazaarList input = new UpdateBazaarList
             {
@@ -103,6 +111,7 @@ namespace OOPTut.UnitTests
             // asserts
             Assert.Equal("Test_Baslik_Guncel", getResponse.Title);
             Assert.Equal("Test_Aciklama_Guncel", getResponse.Description);
+            await CleanAll();
         }
     }
 }

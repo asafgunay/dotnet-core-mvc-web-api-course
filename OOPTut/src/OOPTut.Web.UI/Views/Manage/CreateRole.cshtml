@@ -1,14 +1,30 @@
 ﻿
 @using Microsoft.AspNetCore.Identity
+@model IdentityRole
 @{
     ViewData["Title"] = "CreateRole";
 }
 
 <h1>CreateRole</h1>
+<div class="container">
+    <form asp-action="CreateRole" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="text-info"></label><br>
+            <input asp-for="Name" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NormalizedName" class="text-info"></label><br>
+            <input asp-for="NormalizedName" class="form-control">
+            <span asp-validation-for="NormalizedName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" name="submit" class="btn btn-info btn-md" value="Kaydet">
+        </div>
+    </form>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <div class="container">
     @{
         await Html.RenderPartialAsync("RolesListPartial", ViewBag.RoleList as List<IdentityRole>);

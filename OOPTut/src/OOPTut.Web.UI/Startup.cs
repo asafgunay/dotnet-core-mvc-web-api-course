@@ -39,6 +39,7 @@ namespace OOPTut.Web.UI
 
             // Bizim olusturdugumuz template'i ekle
             services.AddIdentity<ApplicationUser, IdentityRole>()
+                // .AddRoles<IdentityRole>()
           .AddEntityFrameworkStores<ApplicationUserDbContext>();
 
             services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/LogIn");

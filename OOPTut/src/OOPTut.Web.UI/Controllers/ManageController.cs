@@ -12,15 +12,29 @@ namespace OOPTut.Web.UI.Controllers
     public class ManageController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        public ManageController(UserManager<ApplicationUser> userManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public ManageController(UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public async Task<IActionResult> Index()
         {
             var users = await _userManager.Users.ToListAsync();
             return View(users);
+        }
+        public async Task<IActionResult> CreateRole()
+        {
+            List<IdentityRole> roles = await _roleManager.Roles.ToListAsync();
+            return View(roles);
+        }
+        public async Task<IActionResult> RolesListPartial()
+        {
+            List<IdentityRole> roles = await _roleManager.Roles.ToListAsync();
+            return View(roles);
         }
     }
 }

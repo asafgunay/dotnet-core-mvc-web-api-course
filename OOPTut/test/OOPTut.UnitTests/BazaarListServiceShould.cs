@@ -3,6 +3,7 @@ using OOPTut.Application;
 using OOPTut.Core.Bazaar;
 using OOPTut.EntityFramework.Contexts;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -55,7 +56,6 @@ namespace OOPTut.UnitTests
         public async Task Create()
         {
             await CreateFirst();
-            // Create metodu test edilecek
             // olusturulan fake datanin durumunu test et
             // Assert bir test sorgusu cesididir sorgu basariliysa test adimi da basarilidir.
             // Assert.Equal degerlerin birebir esit olup olmadigini kontrol eder.
@@ -71,26 +71,42 @@ namespace OOPTut.UnitTests
         {
 
             var getResponse = new BazaarList();
-            // Create metodu test edilecek
             await CreateFirst();
-
-
             var firstData = await inMemoryContext.BazaarLists.FirstAsync();
             getResponse = await service.Get(firstData.Id);
-
             Assert.Equal(1, await inMemoryContext.BazaarLists.CountAsync());
             Assert.Equal("Test_Baslik", getResponse.Title);
             Assert.Equal("Test_Aciklama", getResponse.Description);
+        }
+        [Fact]
+        public async Task GetAll()
+        {
+            var getResponse = new BazaarList();
+            await CreateFirst();
+            // GetAll service test
+            var getAll = await service.GetAll();
+            getResponse = getAll.First();
+            Assert.Equal(1, await inMemoryContext.BazaarLists.CountAsync());
+            Assert.Equal("Test_Baslik", getResponse.Title);
+            Assert.Equal("Test_Aciklama", getResponse.Description);
+        }
+        [Fact]
+        public async Task Delete()
+        {
+
+            await CreateFirst();
+            var firstData = await inMemoryContext.BazaarLists.FirstAsync();
+            // Delete test
+            await service.Delete(firstData.Id);
+            Assert.Equal(0, await inMemoryContext.BazaarLists.CountAsync());
         }
 
         [Fact]
         public async Task Update()
         {
 
-            // set context / contexti ayarla
             // declare id variable / id diye bir degisken tanimla
             int id = 0;
-            // first scope / ilk context scope u
             // create
             await CreateFirst();
             var firstData = await inMemoryContext.BazaarLists.FirstAsync();
@@ -105,8 +121,7 @@ namespace OOPTut.UnitTests
                 Id = id
             };
             await service.Update(input);
-
-            // get / get ile datayi cek
+            // get ile datayi cek
             var getResponse = await service.Get(id);
             // asserts
             Assert.Equal("Test_Baslik_Guncel", getResponse.Title);

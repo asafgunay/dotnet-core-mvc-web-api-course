@@ -4,8 +4,6 @@ using OOPTut.Application.BazaarListItemServices.Dto;
 using OOPTut.Core.Bazaar;
 using OOPTut.EntityFramework.Contexts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -32,14 +30,24 @@ namespace OOPTut.UnitTests
         }
         private async Task CreateFirst()
         {
-            // parametresiyle fake data olustur
-            CreateBazaarListItem fakeInput = new CreateBazaarListItem {
-                BazaarListId = bazaarListId,
-                CreatorUserId = Guid.NewGuid().ToString(),
-                Name = "Domates_Test"
-            };
-            // servisi calistir
-            await service.CreateAsync(fakeInput);
+            var count = await inMemoryDbContext.BazaarListItems.CountAsync();
+            if(count > 1)
+            {
+                await CleanAll();
+                await CreateFirst();
+            }
+            if (count == 0)
+            {
+                // parametresiyle fake data olustur
+                CreateBazaarListItem fakeInput = new CreateBazaarListItem
+                {
+                    BazaarListId = bazaarListId,
+                    CreatorUserId = Guid.NewGuid().ToString(),
+                    Name = "Domates_Test"
+                };
+                // servisi calistir
+                await service.CreateAsync(fakeInput);
+            }
         }
         private async Task CleanAll()
         {
@@ -64,9 +72,16 @@ namespace OOPTut.UnitTests
         [Fact]
         public async Task Get()
         {
+            await CreateFirst();
             // BazaarListItem id si bul
+            BazaarListItem created = await inMemoryDbContext.BazaarListItems.FirstOrDefaultAsync();
             // id ye gore servisi calistir
+            var get = await service.GetAsync(created.Id);
             // kontrol et!
+            Assert.False(get.IsCanceled);
+            Assert.False(get.IsCompleted);
+            Assert.Equal(bazaarListId, get.BazaarListId);
+            Assert.Equal("Domates_Test", get.Name);
         }
         [Fact]
         public async Task GetAllById()

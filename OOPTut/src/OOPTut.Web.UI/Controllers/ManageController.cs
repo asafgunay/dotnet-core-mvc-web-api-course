@@ -28,9 +28,13 @@ namespace OOPTut.Web.UI.Controllers
         }
         public async Task<IActionResult> CreateRole()
         {
-            List<IdentityRole> roles = await _roleManager.Roles.ToListAsync();
-            return View(roles);
+            ViewBag.RoleList = await _roleManager.Roles.ToListAsync();
+            return View();
         }
+
+
+
+
         public async Task<IActionResult> RolesListPartial()
         {
             List<IdentityRole> roles = await _roleManager.Roles.ToListAsync();

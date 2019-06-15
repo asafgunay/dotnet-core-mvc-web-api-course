@@ -12,6 +12,7 @@ using OOPTut.Web.UI.Models.ManageViewModels;
 
 namespace OOPTut.Web.UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ManageController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -87,9 +88,16 @@ namespace OOPTut.Web.UI.Controllers
             if (ModelState.IsValid)
             {
                 // business logic
+                // Kullaniciyi Role Ekle
+                var user = await _userManager.FindByIdAsync(model.UserId);
+                var roleName = await _roleManager.FindByIdAsync(model.RoleId);
+                var assignRole = await _userManager.AddToRoleAsync(user, roleName.Name);
+                if (assignRole.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
             }
-
-            return RedirectToAction("AddRoleToUser");
+            return View(model);
         }
 
 

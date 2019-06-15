@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OOPTut.Core.Users.ApplicationUser>
+﻿@model IEnumerable<OOPTut.Web.UI.Models.AccountViewModels.UserListViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -26,7 +26,7 @@
                         @Html.DisplayNameFor(model => model.LastName)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.UserName)
+                        @Html.DisplayNameFor(model => model.Email)
                     </th>
                     <th>Roller</th>
                     <th></th>
@@ -43,16 +43,15 @@
                             @Html.DisplayFor(modelItem => item.LastName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.UserName)
+                            @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.UserName)
+                            @Html.Raw(string.Join(", ", item.UserRoles))
                         </td>
-                        <td></td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
                             <a asp-action="Details" asp-route-id="@item.Id">Sil</a>
-                          
+
                         </td>
                     </tr>
                 }

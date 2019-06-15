@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OOPTut.Core.Users;
+using OOPTut.EntityFramework.Contexts;
+using OOPTut.Web.UI.Models.AccountViewModels;
 using OOPTut.Web.UI.Models.ManageViewModels;
 
 namespace OOPTut.Web.UI.Controllers
@@ -17,17 +19,40 @@ namespace OOPTut.Web.UI.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ApplicationUserDbContext _context;
 
         public ManageController(UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager, ApplicationUserDbContext context)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _context = context;
         }
         // [Authorize(Roles ="Admin, TeamLeader")]
         public async Task<IActionResult> Index()
         {
-            var users = await _userManager.Users.ToListAsync();
+            //var usersRoles = _roleManager
+            //
+            var userRoles = await _context.UserRoles.ToListAsync();
+            var roles = await _roleManager.Roles.ToListAsync();
+            List<UserListViewModel> users = await _userManager.Users
+                .Select(x => new UserListViewModel
+                {
+                    Id = x.Id,
+                    Email = x.UserName,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    UserRoles = userRoles.Where(ur => ur.UserId == x.Id).Any()
+                            ?
+                        /*kulanicinin rolu varsa*/
+                        roles.Where(
+                            r =>
+                   userRoles.Where(ur => ur.UserId == x.Id).Select(ur => ur.RoleId).Contains(r.Id)).ToList()
+                        :
+                        /*yoksa*/
+                        new List<IdentityRole>()
+                }).ToListAsync();
+
             return View(users);
         }
         // [Authorize(Roles ="Admin")]

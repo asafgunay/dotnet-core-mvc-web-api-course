@@ -33,7 +33,7 @@
     <link href="~/css/product.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light navbar-custom">
+    <nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
         <a class="navbar-brand" href="#">
         <img class="site-logo" src="~/img/harvest.png" />
         </a>
@@ -55,6 +55,13 @@
                 <li class="nav-item">
                     <a class="nav-link" asp-action="Contact" asp-controller="Home">İletişim</a>
                 </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Manage">Yönetim</a>
+                    </li>
+                }
+               
 
             </ul>
             @await Html.PartialAsync("_LoginPartial")
@@ -80,14 +87,7 @@
 
     </nav>*@
 
-    <div class="position-relative overflow-hidden p-3 p-md-5 text-center bg-dark text-light slider-bg">
-        <div class="col-md-6 p-lg-6 mx-auto my-5">
-            <h1 class="display-4 font-weight-normal">Pazar Alışverişim artık çooooook kolay!</h1>
-            <p class="lead font-weight-normal">Artık pırasayı almayı unuttum yok patates pahalıydı dertlerine son! Uygulamamız pek yakında App Store ve Play Store'da yayında(!)</p>
-            <a class="btn btn-outline-secondary btn-light" href="#">Giriş Yap</a>
-        </div>
-
-    </div>
+    
     <div class="container-fluid">
         @RenderBody()
     </div>

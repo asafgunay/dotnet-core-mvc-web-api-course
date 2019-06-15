@@ -4,47 +4,59 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Kullanicilar</h1>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>Roller</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td></td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Sil</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Rol Ekle</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+<div class="container">
+    <div class="row">
+        <div class="col m-2">
+            <h1>Kullanıcı Listesi</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col m-2">
+            <a asp-action="CreateRole" class="btn btn-outline-primary">Yeni Rol Tanimla</a> | <a asp-action="AddRoleToUser" class="btn btn-outline-primary">Kullanıcıya Rol Ekle</a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </th>
+                    <th>Roller</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td></td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Sil</a>
+                          
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

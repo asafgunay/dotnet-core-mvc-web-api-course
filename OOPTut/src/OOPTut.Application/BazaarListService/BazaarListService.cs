@@ -52,6 +52,14 @@ namespace OOPTut.Application
             return list;
         }
 
+        public async Task<List<BazaarList>> GetAllByOwner(string userId)
+        {
+            var list = await _context.BazaarLists
+                .Where(x => x.CreatorUserId == userId)
+                .Include(x => x.BazaarListItems).ToListAsync();
+            return list;
+        }
+
         public async Task<BazaarList> Update(UpdateBazaarList input)
         {
             var updateBazaarList = await Get(input.Id);

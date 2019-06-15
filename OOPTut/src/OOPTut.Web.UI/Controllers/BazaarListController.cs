@@ -20,7 +20,11 @@ namespace OOPTut.Web.UI.Controllers
         /// <returns>BazaarList Tablosun liste gorunumu</returns>
         public async Task<IActionResult> Index()
         {
-            return View(await _bazaarListService.GetAll());
+            // return View(await _bazaarListService.GetAll());
+           string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            return View(await _bazaarListService.GetAllByOwner(userId));
+
         }
         public ActionResult Create()
         {

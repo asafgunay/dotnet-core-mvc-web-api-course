@@ -1,0 +1,24 @@
+﻿@model OOPTut.Web.UI.Models.ManageViewModels.AddRoleToUserViewModel
+@{
+    ViewData["Title"] = "AddRoleToUser";
+}
+
+<h1>Kullaniciya rol ekle</h1>
+
+<form asp-action="AddRoleToUser" method="post" class="form-horizontal">
+    <div asp-validation-summary="All" class="text-danger">
+    </div>
+    <div class="form-group">
+        <label asp-for="UserId"></label>
+        <select asp-for="UserId" asp-items="Model.UserList" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="RoleId"></label>
+        <select asp-for="RoleId" asp-items="Model.RoleList" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Rol Ekle" class="btn btn-primary" />
+    </div>
+
+</form>
+

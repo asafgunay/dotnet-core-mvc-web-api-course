@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OOPTut.Core.Users;
+using OOPTut.Web.UI.Models.ManageViewModels;
 
 namespace OOPTut.Web.UI.Controllers
 {
@@ -44,7 +46,51 @@ namespace OOPTut.Web.UI.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> AddRoleToUser()
+        {
+            // iki tane ddl lazim
+            // birincisi kullanici listesi
+            List<SelectListItem> userList = new List<SelectListItem>();
+            List<ApplicationUser> users = await _userManager.Users.ToListAsync();
+            foreach (var user in users)
+            {
+                userList.Add(new SelectListItem
+                {
+                    Selected = false,
+                    Text = user.Email,
+                    Value = user.Id
+                });
+            }
+            // ikincisi eklenebilir roller listesi
+            List<SelectListItem> roleList = new List<SelectListItem>();
+            List<IdentityRole> roles = await _roleManager.Roles.ToListAsync();
+            foreach (var identityRole in roles)
+            {
+                roleList.Add(new SelectListItem
+                {
+                    Selected = false,
+                    Text = identityRole.Name,
+                    Value = identityRole.Id
+                });
+            }
+            AddRoleToUserViewModel model = new AddRoleToUserViewModel
+            {
+                UserList = userList,
+                RoleList = roleList
+            };
+            return View(model);
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> AddRoleToUser(AddRoleToUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // business logic
+            }
+
+            return RedirectToAction("AddRoleToUser");
+        }
 
 
         public async Task<IActionResult> RolesListPartial()

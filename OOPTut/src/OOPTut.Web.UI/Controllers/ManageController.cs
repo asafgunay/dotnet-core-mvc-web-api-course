@@ -58,7 +58,6 @@ namespace OOPTut.Web.UI.Controllers
         // [Authorize(Roles ="Admin")]
         public async Task<IActionResult> CreateRole()
         {
-            ViewBag.RoleList = await _roleManager.Roles.ToListAsync();
             return View();
         }
         [HttpPost]

@@ -24,7 +24,5 @@ namespace OOPTut.EntityFramework
             // dbContext.Database.Migrate();
             return dbContext;
         }
-
-
     }
 }

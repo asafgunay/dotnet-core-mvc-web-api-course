@@ -16,5 +16,6 @@ namespace OOPTut.EntityFramework.Contexts
         public DbSet<BazaarList> BazaarLists { get; set; }
         public DbSet<BazaarListItem> BazaarListItems { get; set; }
         public DbSet<NavBarMenuItem> NavBarMenuItems { get; set; }
+        public DbSet<SharedBazaarList> SharedBazaarLists { get; set; }
     }
 }

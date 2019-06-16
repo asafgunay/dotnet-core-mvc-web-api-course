@@ -13,14 +13,14 @@ namespace OOPTut.Core.Navbar
         public string Icon { get; set; } // "fa fa-home"
         public string Roles { get; set; } // bos
         public bool IsAnonym { get; set; } // true
-                                           /*
-                                   <a href="@Url" target="@{OpenInSamePage ? "_self" : "_blank" } title="@Title">
-                                       @if(!string.IsNullOrEmpty(Icon)){
-                                           <span class="@Icon"></span>
-                                       }
-                                       @Title
-                                   </a>
-                                            */
+                /*
+        <a href="@Url" target="@{OpenInSamePage ? "_self" : "_blank" } title="@Title">
+            @if(!string.IsNullOrEmpty(Icon)){
+                <span class="@Icon"></span>
+            }
+            @Title
+        </a>
+                */
         public static NavBarMenuItem Create(string title, string url, bool openInSamePage, string icon, string roles)
         {
             NavBarMenuItem item = new NavBarMenuItem

@@ -33,42 +33,7 @@
     <link href="~/css/product.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
-        <a class="navbar-brand" href="#">
-        <img class="site-logo" src="~/img/harvest.png" />
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" asp-action="Index" asp-controller="Home">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-action="Index" asp-controller="BazaarList">Pazar Listelerim</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-action="About" asp-controller="Home">Hakkımızda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-action="Contact" asp-controller="Home">İletişim</a>
-                </li>
-                @if (User.IsInRole("Admin"))
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="Index" asp-controller="Manage">Yönetim</a>
-                    </li>
-                }
-               
-
-            </ul>
-            @await Html.PartialAsync("_LoginPartial")
-
-
-        </div>
-    </nav>
+    @await Component.InvokeAsync("NavBarMenu")
     @*<nav class="site-header sticky-top py-1">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
             <a class="py-2" href="#">

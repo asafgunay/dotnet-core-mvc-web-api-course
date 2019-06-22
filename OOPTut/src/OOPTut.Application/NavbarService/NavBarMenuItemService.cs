@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,10 @@ namespace OOPTut.Application.NavbarService
         {
             return await _context.NavBarMenuItems.ToListAsync();
         }
+        public async Task<NavBarMenuItem> Get(int id)
+        {
+            return await _context.NavBarMenuItems.FindAsync(id);
+        }
 
         public async Task<NavBarMenuItem> Create(CreateNavBarMenuItemInput input)
         {
@@ -34,11 +39,32 @@ namespace OOPTut.Application.NavbarService
         }
         public async Task<NavBarMenuItem> Update(UpdateNavBarMenuItemInput input)
         {
-            throw new NotImplementedException();
+            var navbarItem = await Get(input.Id);
+            navbarItem.Icon = input.Icon;
+            navbarItem.IsAnonym = string.IsNullOrEmpty(input.Roles);
+            navbarItem.OpenInSamePage = input.OpenInSamePage;
+            navbarItem.Roles = input.Roles;
+            navbarItem.Title = input.Title;
+            navbarItem.Url = input.Url;
+            _context.NavBarMenuItems.Update(navbarItem);
+            await _context.SaveChangesAsync();
+            return navbarItem;
         }
         public async Task Delete(DeleteNavBarMenuItemInput input)
         {
-            throw new NotImplementedException();
+            try {
+                var deleteItem = await Get(input.Id);
+                if (deleteItem != null)
+                {
+                    _context.NavBarMenuItems.Remove(deleteItem);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿<nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
+﻿@using OOPTut.Core.Navbar
+@model IEnumerable<NavBarMenuItem>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
     <a class="navbar-brand" href="#">
         <img class="site-logo" src="~/img/harvest.png" />
     </a>
@@ -8,24 +11,36 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" asp-action="Index" asp-controller="Home">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-action="Index" asp-controller="BazaarList">Pazar Listelerim</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-action="About" asp-controller="Home">Hakkımızda</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-action="Contact" asp-controller="Home">İletişim</a>
-            </li>
-            @if (User.IsInRole("Admin"))
+            @foreach (var item in Model)
             {
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="Index" asp-controller="Manage">Yönetim</a>
+                    <a href="@Url.Content(item.Url)" target="@(item.OpenInSamePage ? "_self" : "_blank")" title="@item.Title" class="nav-link">
+                        @if (!string.IsNullOrEmpty(item.Icon))
+                        {
+                            <span class="fa @item.Icon"></span>
+                        }
+                        @item.Title
+                    </a>
                 </li>
             }
+            @*<li class="nav-item active">
+                    <a class="nav-link" asp-action="Index" asp-controller="Home">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Index" asp-controller="BazaarList">Pazar Listelerim</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="About" asp-controller="Home">Hakkımızda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Contact" asp-controller="Home">İletişim</a>
+                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Manage">Yönetim</a>
+                    </li>
+                }*@
 
 
         </ul>

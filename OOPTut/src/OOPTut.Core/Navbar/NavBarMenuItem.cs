@@ -13,6 +13,7 @@ namespace OOPTut.Core.Navbar
         public string Icon { get; set; } // "fa fa-home"
         public string Roles { get; set; } // bos
         public bool IsAnonym { get; set; } // true
+        public int Order { get; set; } // Menu sirasi
                 /*
         <a href="@Url" target="@{OpenInSamePage ? "_self" : "_blank" } title="@Title">
             @if(!string.IsNullOrEmpty(Icon)){
@@ -21,7 +22,7 @@ namespace OOPTut.Core.Navbar
             @Title
         </a>
                 */
-        public static NavBarMenuItem Create(string title, string url, bool openInSamePage, string icon, string roles, bool isAnonym)
+        public static NavBarMenuItem Create(string title, string url, bool openInSamePage, string icon, string roles, bool isAnonym, int order)
         {
             NavBarMenuItem item = new NavBarMenuItem
             {
@@ -30,9 +31,10 @@ namespace OOPTut.Core.Navbar
                 OpenInSamePage = openInSamePage,
                 Icon = icon,
                 Roles = roles,
-                IsAnonym = string.IsNullOrEmpty(roles) ? isAnonym : false
+                IsAnonym = string.IsNullOrEmpty(roles) ? isAnonym : false,
                 // roller bossa => gelen is anonym neyse onu yap
                 // roller doluysa => isanonym'i false don
+                Order = order
             };
             return item;
         }

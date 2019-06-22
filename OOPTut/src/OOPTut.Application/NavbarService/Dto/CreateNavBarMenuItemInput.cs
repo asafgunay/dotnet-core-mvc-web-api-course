@@ -8,13 +8,16 @@ namespace OOPTut.Application.NavbarService.Dto
     public class CreateNavBarMenuItemInput
     {
         [Required]
-        [Display(Name ="Link'in Adı")]
+        [Display(Name = "Sıra")]
+        public int Order { get; set; }
+        [Required]
+        [Display(Name = "Link'in Adı")]
         public string Title { get; set; }
         [Required]
-        [Display(Name ="URL")]
+        [Display(Name = "URL")]
         public string Url { get; set; }
         [Required]
-        [Display(Name ="Aynı Sayfada Açılsın mı?")]
+        [Display(Name = "Aynı Sayfada Açılsın mı?")]
         public bool OpenInSamePage { get; set; }
         [Display(Name = "İkon Kodu")]
         public string Icon { get; set; }

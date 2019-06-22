@@ -57,7 +57,7 @@ namespace OOPTut.Web.UI.ViewComponents
 
             // yukarıdaki koşullara göre servisten gelen menü nesnelerini filtrele
             // ardından bunu view'e dön
-            return View(model);
+            return View(model.OrderBy(x => x.Order).ToList());
         }
     }
 }

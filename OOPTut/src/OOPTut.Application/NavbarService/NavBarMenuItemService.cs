@@ -20,7 +20,7 @@ namespace OOPTut.Application.NavbarService
 
         public async Task<List<NavBarMenuItem>> GetAll()
         {
-            return await _context.NavBarMenuItems.ToListAsync();
+            return await _context.NavBarMenuItems.OrderBy(x => x.Order).ToListAsync();
         }
         public async Task<NavBarMenuItem> Get(int id)
         {
@@ -30,7 +30,7 @@ namespace OOPTut.Application.NavbarService
         public async Task<NavBarMenuItem> Create(CreateNavBarMenuItemInput input)
         {
             // create'e hazir bir model olusturan metodu calistiriyor.
-            NavBarMenuItem createModel = NavBarMenuItem.Create(input.Title, input.Url, input.OpenInSamePage, input.Icon, input.Roles, input.IsAnonym);
+            NavBarMenuItem createModel = NavBarMenuItem.Create(input.Title, input.Url, input.OpenInSamePage, input.Icon, input.Roles, input.IsAnonym, input.Order);
             // olusan createModel context e kaydediliyor
             await _context.NavBarMenuItems.AddAsync(createModel);
             // sonra contextteki degisiklikler veritabanina iletiliyor
@@ -48,6 +48,7 @@ namespace OOPTut.Application.NavbarService
             navbarItem.Roles = input.Roles;
             navbarItem.Title = input.Title;
             navbarItem.Url = input.Url;
+            navbarItem.Order = input.Order;
             _context.NavBarMenuItems.Update(navbarItem);
             await _context.SaveChangesAsync();
             return navbarItem;

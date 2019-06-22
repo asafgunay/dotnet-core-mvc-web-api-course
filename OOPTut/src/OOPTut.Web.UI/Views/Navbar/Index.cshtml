@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Order)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
@@ -37,6 +40,9 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Order)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
@@ -59,7 +65,7 @@
                 @Html.DisplayFor(modelItem => item.IsAnonym)
             </td>
             <td>
-                <a asp-action="Update" class="btn btn-sm btn-outline-primary mr-1"  asp-route-id="@item.Id"><span class="fa fa-edit"></span></a> 
+                <a asp-action="Update" class="btn btn-sm btn-outline-primary mr-1" asp-route-id="@item.Id"><span class="fa fa-edit"></span></a>
                 <a asp-action="Delete" class="btn btn-sm btn-outline-danger" asp-route-id="@item.Id"><span class="fa fa-trash"></span></a>
             </td>
         </tr>

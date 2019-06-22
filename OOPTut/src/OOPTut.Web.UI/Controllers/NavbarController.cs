@@ -49,7 +49,8 @@ namespace OOPTut.Web.UI.Controllers
                 OpenInSamePage=item.OpenInSamePage,
                 Roles=item.Roles,
                 Title=item.Title,
-                Url=item.Url
+                Url=item.Url,
+                Order=item.Order
             };
 
             return View(model);

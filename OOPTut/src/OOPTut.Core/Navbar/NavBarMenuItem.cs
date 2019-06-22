@@ -31,6 +31,8 @@ namespace OOPTut.Core.Navbar
                 Icon = icon,
                 Roles = roles,
                 IsAnonym = string.IsNullOrEmpty(roles) ? isAnonym : false
+                // roller bossa => gelen is anonym neyse onu yap
+                // roller doluysa => isanonym'i false don
             };
             return item;
         }

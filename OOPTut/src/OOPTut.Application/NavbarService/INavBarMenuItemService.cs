@@ -11,6 +11,10 @@ namespace OOPTut.Application.NavbarService
     {
         // GetAll
         Task<List<NavBarMenuItem>> GetAll();
+
+        // Get 
+        Task<NavBarMenuItem> Get(int id);
+
         // Create
         Task<NavBarMenuItem> Create(CreateNavBarMenuItemInput input);
         // Update

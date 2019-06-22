@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OOPTut.Application;
 using OOPTut.Application.BazaarListItemServices;
+using OOPTut.Application.NavbarService;
 using OOPTut.Core.Users;
 using OOPTut.EntityFramework.Contexts;
 
@@ -39,7 +40,7 @@ namespace OOPTut.Web.UI
 
             // Bizim olusturdugumuz template'i ekle
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                // .AddRoles<IdentityRole>()
+          // .AddRoles<IdentityRole>()
           .AddEntityFrameworkStores<ApplicationUserDbContext>();
 
             services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/LogIn");
@@ -59,6 +60,8 @@ namespace OOPTut.Web.UI
             //services.AddSingleton<IBazaarListService, BazaarListService>();
 
             services.AddScoped<IBazaarListItemService, BazaarListItemService>();
+            services.AddScoped<INavBarMenuItemService, NavBarMenuItemService>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

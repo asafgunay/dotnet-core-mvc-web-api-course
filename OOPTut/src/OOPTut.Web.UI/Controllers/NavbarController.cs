@@ -38,9 +38,31 @@ namespace OOPTut.Web.UI.Controllers
             return View(model);
         }
 
-        public IActionResult Update()
+        public async Task<IActionResult> Update(int id)
         {
-            return View();
+            var item = await _navBarMenuItemService.Get(id);
+            UpdateNavBarMenuItemInput model = new UpdateNavBarMenuItemInput
+            {
+                Id = item.Id,
+                Icon=item.Icon,
+                IsAnonym=item.IsAnonym,
+                OpenInSamePage=item.OpenInSamePage,
+                Roles=item.Roles,
+                Title=item.Title,
+                Url=item.Url
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateNavBarMenuItemInput model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _navBarMenuItemService.Update(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
         public IActionResult Delete()
         {

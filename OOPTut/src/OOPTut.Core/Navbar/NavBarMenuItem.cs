@@ -21,7 +21,7 @@ namespace OOPTut.Core.Navbar
             @Title
         </a>
                 */
-        public static NavBarMenuItem Create(string title, string url, bool openInSamePage, string icon, string roles)
+        public static NavBarMenuItem Create(string title, string url, bool openInSamePage, string icon, string roles, bool isAnonym)
         {
             NavBarMenuItem item = new NavBarMenuItem
             {
@@ -30,7 +30,7 @@ namespace OOPTut.Core.Navbar
                 OpenInSamePage = openInSamePage,
                 Icon = icon,
                 Roles = roles,
-                IsAnonym = string.IsNullOrEmpty(roles)
+                IsAnonym = string.IsNullOrEmpty(roles) ? isAnonym : false
             };
             return item;
         }

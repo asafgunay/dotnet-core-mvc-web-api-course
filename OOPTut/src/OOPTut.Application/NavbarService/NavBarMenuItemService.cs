@@ -30,7 +30,7 @@ namespace OOPTut.Application.NavbarService
         public async Task<NavBarMenuItem> Create(CreateNavBarMenuItemInput input)
         {
             // create'e hazir bir model olusturan metodu calistiriyor.
-            NavBarMenuItem createModel = NavBarMenuItem.Create(input.Title, input.Url, input.OpenInSamePage, input.Icon, input.Roles);
+            NavBarMenuItem createModel = NavBarMenuItem.Create(input.Title, input.Url, input.OpenInSamePage, input.Icon, input.Roles, input.IsAnonym);
             // olusan createModel context e kaydediliyor
             await _context.NavBarMenuItems.AddAsync(createModel);
             // sonra contextteki degisiklikler veritabanina iletiliyor
@@ -41,7 +41,9 @@ namespace OOPTut.Application.NavbarService
         {
             var navbarItem = await Get(input.Id);
             navbarItem.Icon = input.Icon;
-            navbarItem.IsAnonym = string.IsNullOrEmpty(input.Roles);
+            navbarItem.IsAnonym = string.IsNullOrEmpty(input.Roles) ? input.IsAnonym : false;
+            // roller bossa => gelen is anonym neyse onu yap
+            // roller doluysa => isanonym'i false don
             navbarItem.OpenInSamePage = input.OpenInSamePage;
             navbarItem.Roles = input.Roles;
             navbarItem.Title = input.Title;
@@ -52,7 +54,8 @@ namespace OOPTut.Application.NavbarService
         }
         public async Task Delete(DeleteNavBarMenuItemInput input)
         {
-            try {
+            try
+            {
                 var deleteItem = await Get(input.Id);
                 if (deleteItem != null)
                 {
@@ -60,7 +63,7 @@ namespace OOPTut.Application.NavbarService
                     await _context.SaveChangesAsync();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

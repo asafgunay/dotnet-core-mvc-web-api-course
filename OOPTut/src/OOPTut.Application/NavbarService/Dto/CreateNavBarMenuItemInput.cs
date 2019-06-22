@@ -20,5 +20,7 @@ namespace OOPTut.Application.NavbarService.Dto
         public string Icon { get; set; }
         [Display(Name = "Roller")]
         public string Roles { get; set; }
+        [Display(Name = "Anonim girişe izin ver")]
+        public bool IsAnonym { get; set; } = true;
     }
 }

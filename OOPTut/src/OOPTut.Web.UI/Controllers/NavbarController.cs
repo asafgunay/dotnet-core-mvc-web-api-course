@@ -64,9 +64,16 @@ namespace OOPTut.Web.UI.Controllers
             }
             return View(model);
         }
-        public IActionResult Delete()
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var model = await _navBarMenuItemService.Get(id);
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteItem(int id)
+        {
+            await _navBarMenuItemService.Delete(new DeleteNavBarMenuItemInput { Id = id });
+            return RedirectToAction("Index");
         }
     }
 }

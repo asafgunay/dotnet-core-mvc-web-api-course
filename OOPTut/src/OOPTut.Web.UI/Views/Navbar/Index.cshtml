@@ -46,8 +46,11 @@
                 @Html.DisplayFor(modelItem => item.OpenInSamePage)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Icon) 
-                @Html.Raw(" => ") <span class="fa @item.Icon"></span>
+                @Html.DisplayFor(modelItem => item.Icon)
+                @if (!string.IsNullOrEmpty(item.Icon))
+                {
+                    @Html.Raw(" => ") <span class="fa @item.Icon"></span>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Roles)
@@ -56,9 +59,8 @@
                 @Html.DisplayFor(modelItem => item.IsAnonym)
             </td>
             <td>
-                <a asp-action="Update" asp-route-id="@item.Id"><span class="fa fa-edit"></span></a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Update" class="btn btn-sm btn-outline-primary mr-1"  asp-route-id="@item.Id"><span class="fa fa-edit"></span></a> 
+                <a asp-action="Delete" class="btn btn-sm btn-outline-danger" asp-route-id="@item.Id"><span class="fa fa-trash"></span></a>
             </td>
         </tr>
 }

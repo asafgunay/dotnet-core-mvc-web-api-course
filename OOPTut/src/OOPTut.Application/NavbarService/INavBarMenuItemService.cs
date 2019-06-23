@@ -21,5 +21,9 @@ namespace OOPTut.Application.NavbarService
         Task<NavBarMenuItem> Update(UpdateNavBarMenuItemInput input);
         // Delete
         Task Delete(DeleteNavBarMenuItemInput input);
+
+        // Menuye yeni bir nesne eklendiginde once eklendigi siraya bakalim eger sira numarasina sahip bir nesne varsa o ve ondan buyuk olanlarin sira numaralarini birer artiralim.
+
+        Task OrderNumberFix(int newOrder);
     }
 }

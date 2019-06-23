@@ -31,6 +31,7 @@ namespace OOPTut.Application.NavbarService
         {
             // create'e hazir bir model olusturan metodu calistiriyor.
             NavBarMenuItem createModel = NavBarMenuItem.Create(input.Title, input.Url, input.OpenInSamePage, input.Icon, input.Roles, input.IsAnonym, input.Order);
+            await OrderNumberFix(createModel.Order);
             // olusan createModel context e kaydediliyor
             await _context.NavBarMenuItems.AddAsync(createModel);
             // sonra contextteki degisiklikler veritabanina iletiliyor
@@ -40,6 +41,11 @@ namespace OOPTut.Application.NavbarService
         public async Task<NavBarMenuItem> Update(UpdateNavBarMenuItemInput input)
         {
             var navbarItem = await Get(input.Id);
+
+            if (navbarItem.Order != input.Order)
+            {
+                await OrderNumberFix(input.Order);
+            }
             navbarItem.Icon = input.Icon;
             navbarItem.IsAnonym = string.IsNullOrEmpty(input.Roles) ? input.IsAnonym : false;
             // roller bossa => gelen is anonym neyse onu yap
@@ -69,6 +75,26 @@ namespace OOPTut.Application.NavbarService
                 throw ex;
             }
 
+        }
+
+        // TODO: Aritmetik siraya gore tekrar sirala
+        public async Task OrderNumberFix(int newOrder)
+        {
+            // ayni order a sahip menu var mi onu kontrol ettik
+            bool hasThisOrder = _context.NavBarMenuItems.Any(x => x.Order == newOrder);
+            // eger varsa
+            if (hasThisOrder)
+            {
+                // ayni order ve order numarasi buyuk olan menuleri getir dedik
+                var equalOrGreaterNavs = await _context.NavBarMenuItems.Where(x => x.Order >= newOrder).ToListAsync();
+
+                // hepsinin sirasini bir artir dedik
+                equalOrGreaterNavs.ForEach(x => x.Order++);
+                // toplu update yaptik
+                _context.NavBarMenuItems.UpdateRange(equalOrGreaterNavs);
+                // veritabanina degisiklikleri kaydettik
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

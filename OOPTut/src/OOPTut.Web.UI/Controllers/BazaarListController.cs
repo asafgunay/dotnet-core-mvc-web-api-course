@@ -21,7 +21,11 @@ namespace OOPTut.Web.UI.Controllers
         public async Task<IActionResult> Index()
         {
             // return View(await _bazaarListService.GetAll());
-           string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (User.IsInRole("Admin"))
+            {
+                return View(await _bazaarListService.GetAll());
+            }
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             return View(await _bazaarListService.GetAllByOwner(userId));
 

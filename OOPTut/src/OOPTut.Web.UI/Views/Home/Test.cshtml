@@ -1,0 +1,67 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Test</title>
+    <!-- Bootstrap css-->
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-3">
+        <h1 class="text-primary">
+            Merhaba Mars!!
+        </h1>
+        <div class="row mt-3">
+            <div class="col">
+                <input type="text" id="ogrenci-no" placeholder="ogrenci no girin" value="1432134213" />
+                <input type="text" id="text2" />
+                <button class="btn btn-primary" onclick="ogrenciNoEkle()">ekle</button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col" id="text-here">
+                Mesaj buraya
+            </div>
+        </div>
+    </div>
+
+    <!-- jquery ve bootstrap js -->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        /*Javascript ile ogrenci noyu ekleme*/
+        function ogrenciNoEkle() {
+            //alert("fonksiyon calisti");
+            // Selectorler
+            var _el = document.getElementById("ogrenci-no");
+            //console.log(_el.placeholder);
+            var _target = document.getElementById("text-here");
+            //_target.innerHTML = _el.value;
+
+            var _inputs = document.getElementsByTagName("input");
+            console.log(_inputs);
+            console.log(_inputs.length);
+            // loops
+            var text = "";
+
+            for (var i = 0; i < _inputs.length; i++) {
+                console.log(_inputs[i].value);
+                text += _inputs[i].value + ', ';
+            }
+            _target.innerHTML = text;
+        }
+
+                /*jQuery ile ogrenci noyu ekleme*/
+    </script>
+
+
+
+</body>
+</html>

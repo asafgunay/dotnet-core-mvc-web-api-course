@@ -22,5 +22,9 @@ namespace OOPTut.Web.UI.Controllers
         {
             return View();
         }
+        public IActionResult Test()
+        {
+            return View();
+        }
     }
 }

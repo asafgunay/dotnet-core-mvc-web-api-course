@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using OOPTut.Application;
 using OOPTut.Application.BazaarListItemServices;
 using OOPTut.Application.NavbarService;
@@ -27,6 +29,7 @@ namespace OOPTut.Web.UI
         // Uygulama calismaya baslamadan once ve calisma sirasinda gerekli olan *servislerin* belirli standartlara gore cagrildigi yer
         public void ConfigureServices(IServiceCollection services)
         {
+           
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
@@ -62,7 +65,10 @@ namespace OOPTut.Web.UI
             services.AddScoped<IBazaarListItemService, BazaarListItemService>();
             services.AddScoped<INavBarMenuItemService, NavBarMenuItemService>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
 

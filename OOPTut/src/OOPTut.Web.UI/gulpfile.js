@@ -21,6 +21,9 @@ var deps = {
     "jquery": {
         "dist/*": ""
     },
+    "jquery-ajax-unobtrusive": {
+        "dist/*": ""
+    },
     "bootstrap": {
         "dist/**/*": ""
     },

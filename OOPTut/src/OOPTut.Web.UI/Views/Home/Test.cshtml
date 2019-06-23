@@ -30,12 +30,54 @@
                 Mesaj buraya
             </div>
         </div>
+
+
+        <h2 class="text-primary">
+            JS ile hesapla
+        </h2>
+        <!--Hesaplama -->
+        <div class="row mt-3">
+            <div class="col">
+                <input type="number" id="number1" placeholder="birinci sayi" />
+                <input type="number" id="number2" placeholder="ikinci sayi" />
+                <button class="btn btn-primary" id="hesaplama-butonu">Çarp</button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col" id="sonuc-div">
+                Sonuç buraya
+            </div>
+        </div>
+
+
     </div>
 
     <!-- jquery ve bootstrap js -->
     <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
+        $(document).ready(function () {
+
+            $.get('/BazaarList/GetList', function (data, status) {
+                console.log("Data: " + data + "\nStatus: " + status);
+            });
+
+        });
+        /* hesaplama */
+        function hesaplaCarp() {
+            var num1 = document.getElementById('number1').value;
+            var num2 = document.getElementById('number2').value;
+            console.log(num1 * num2);
+            var _target = document.getElementById('sonuc-div');
+            _target.innerHTML = num1 + ' x ' + num2 + ' = ' + num1 * num2;
+        }
+        /*jQuery ile hesaplama*/
+        $("#hesaplama-butonu").on('click', function () {
+            var num1 = $('#number1').val();
+            var num2 = $('#number2').val();
+            $('#sonuc-div').html(num1 + ' x ' + num2 + ' = ' + num1 * num2);
+        });
         /*Javascript ile ogrenci noyu ekleme*/
         function ogrenciNoEkle() {
             //alert("fonksiyon calisti");
@@ -58,7 +100,7 @@
             _target.innerHTML = text;
         }
 
-                /*jQuery ile ogrenci noyu ekleme*/
+                            /*jQuery ile ogrenci noyu ekleme*/
     </script>
 
 

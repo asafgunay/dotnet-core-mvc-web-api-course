@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using OOPTut.Application;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -29,6 +30,12 @@ namespace OOPTut.Web.UI.Controllers
 
             return View(await _bazaarListService.GetAllByOwner(userId));
 
+        }
+        public async Task<JsonResult> GetList()
+        {
+            var list = await _bazaarListService.GetAll();
+            var resultJson = JsonConvert.SerializeObject(list);
+            return Json(resultJson);
         }
         public ActionResult Create()
         {
@@ -69,11 +76,12 @@ namespace OOPTut.Web.UI.Controllers
         public async Task<ActionResult> Update(int id)
         {
             var model = await _bazaarListService.Get(id);
-            UpdateBazaarList updateModel = new UpdateBazaarList {
-                Id=model.Id,
-                CreatorUserId=model.CreatorUserId,
-                Description= model.Description,
-                Title=model.Title
+            UpdateBazaarList updateModel = new UpdateBazaarList
+            {
+                Id = model.Id,
+                CreatorUserId = model.CreatorUserId,
+                Description = model.Description,
+                Title = model.Title
             };
             return View(updateModel);
         }

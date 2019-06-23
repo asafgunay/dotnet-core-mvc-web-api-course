@@ -23,6 +23,7 @@ namespace OOPTut.Web.UI.Controllers
             var list = await _navBarMenuItemService.GetAll();
             return View(list);
         }
+      
         public IActionResult Create()
         {
             return View();

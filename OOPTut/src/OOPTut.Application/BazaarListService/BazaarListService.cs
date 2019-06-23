@@ -51,6 +51,13 @@ namespace OOPTut.Application
                 .ToListAsync();
             return list;
         }
+        public async Task<List<BazaarList>> GetAllRaw()
+        {
+            // veritabani icerisindek bazaarLists tablosunun tum satirlarini liste halinde dön
+            var list = await _context.BazaarLists
+                .ToListAsync();
+            return list;
+        }
 
         public async Task<List<BazaarList>> GetAllByOwner(string userId)
         {

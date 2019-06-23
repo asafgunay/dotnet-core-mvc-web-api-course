@@ -64,11 +64,21 @@ namespace OOPTut.Web.UI
 
             services.AddScoped<IBazaarListItemService, BazaarListItemService>();
             services.AddScoped<INavBarMenuItemService, NavBarMenuItemService>();
+            // Add this somewhere in your project, most likely in Startup.cs
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
 
-            services.AddMvc().AddJsonOptions(options => {
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options =>
+            {
+                options.SerializerSettings.Formatting = Formatting.Indented;
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+                options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            });
+
         }
 
 

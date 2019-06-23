@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using OOPTut.Application;
+using OOPTut.Core.Bazaar;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -33,7 +35,7 @@ namespace OOPTut.Web.UI.Controllers
         }
         public async Task<JsonResult> GetList()
         {
-            var list = await _bazaarListService.GetAll();
+            List<BazaarList> list = await _bazaarListService.GetAllRaw();
             var resultJson = JsonConvert.SerializeObject(list);
             return Json(resultJson);
         }

@@ -7,6 +7,8 @@ namespace OOPTut.Application
     public interface IBazaarListService
     {
         Task<List<BazaarList>> GetAll();
+        Task<List<BazaarList>> GetAllRaw();
+
         Task<List<BazaarList>> GetAllByOwner(string userId);
 
         Task<BazaarList> Get(int id);

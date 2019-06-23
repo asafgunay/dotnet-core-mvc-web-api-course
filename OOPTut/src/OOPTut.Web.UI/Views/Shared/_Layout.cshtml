@@ -42,24 +42,24 @@
 <body>
     @await Component.InvokeAsync("NavBarMenu")
     @*<nav class="site-header sticky-top py-1">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="#">
+            <div class="container d-flex flex-column flex-md-row justify-content-between">
+                <a class="py-2" href="#">
 
-                <img class="site-logo" src="~/img/harvest.png" />
-            </a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
-            <a class="py-2 d-none d-md-inline-block" asp-action="About" asp-controller="Home">Hakkımızda</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
-            @await Html.PartialAsync("_LoginPartial")
-        </div>
+                    <img class="site-logo" src="~/img/harvest.png" />
+                </a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
+                <a class="py-2 d-none d-md-inline-block" asp-action="About" asp-controller="Home">Hakkımızda</a>
+                <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
+                @await Html.PartialAsync("_LoginPartial")
+            </div>
 
-    </nav>*@
+        </nav>*@
 
-    
+
     <div class="container-fluid">
         @RenderBody()
     </div>
@@ -114,5 +114,6 @@
         <script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>*@
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

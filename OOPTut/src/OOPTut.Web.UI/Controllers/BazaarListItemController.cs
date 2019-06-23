@@ -98,5 +98,11 @@ namespace OOPTut.Web.UI.Controllers
             }
             return RedirectToAction("Delete", new { id = model.Id });
         }
+        [HttpPost]
+        public async Task<IActionResult> DeleteJson(int id)
+        {
+            await _bazaarListItemService.DeleteAsync(id);
+            return Json(new { result = 1, message = "Başarılı." });
+        }
     }
 }

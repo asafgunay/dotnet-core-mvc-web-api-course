@@ -42,11 +42,11 @@
         {
             if (item.IsCanceled)
             {
-                className = "bg-danger";
+                className = "text-warning";
             }
             else if (item.IsCompleted)
             {
-                className = "bg-success";
+                className = "text-primary";
             }
             else
             {
@@ -74,9 +74,69 @@
                 <td>
                     <a asp-action="Update" asp-route-id="@item.Id">Düzenle</a> @*|
                         <a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                    <button class="btn btn-sm btn-danger" 
+                            onclick="openDeleteModal(@item.Id,'@item.Name')"><span class="fa fa-trash"></span> Sil</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="deleteModalBody">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                <button type="button" class="btn btn-danger" id="delete-confirm-button">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        var deletedId = 0;
+        function openDeleteModal(_id, _title) {
+            console.log(_id);
+            $('#deleteModalLabel').text(_title);
+            $('#deleteModalBody').text("Silmek istediğinize emin misiniz?");
+            $('#deleteModal').modal('show');
+            deletedId = _id;
+        }
+        $("#delete-confirm-button").on('click', function () {
+            if (deletedId > 0) {
+                deleteItem(deletedId);
+            }
+        });
+        function deleteItem(_id) {
+            $.ajax({
+                url: "/BazaarListItem/DeleteJson",
+                type: 'POST',
+                dataType: 'json',
+                data: { id: _id },
+                success: function (data) {
+                    if (data.result == 1) {
+                        alert('basariyla sildiniz');
+                    }
+                    else {
+                        alert('bir hata olustu');
+                    }
+                }
+            });
+        }
+    </script>
+
+
+}

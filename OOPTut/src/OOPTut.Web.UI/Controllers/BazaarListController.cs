@@ -29,9 +29,7 @@ namespace OOPTut.Web.UI.Controllers
                 return View(await _bazaarListService.GetAll());
             }
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
             return View(await _bazaarListService.GetAllByOwner(userId));
-
         }
         public async Task<JsonResult> GetList()
         {

@@ -16,6 +16,16 @@
 <body>
     <div class="container mt-3">
         <h1 class="text-primary">
+            Pazar Listesi
+        </h1>
+
+        <div class="row mt-3">
+            <div class="col" id="data-here">
+                Mesaj buraya
+            </div>
+        </div>
+
+        <h1 class="text-primary mt-3">
             Merhaba Mars!!
         </h1>
         <div class="row mt-3">
@@ -48,8 +58,6 @@
                 Sonuç buraya
             </div>
         </div>
-
-
     </div>
 
     <!-- jquery ve bootstrap js -->
@@ -58,10 +66,21 @@
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function () {
-
             $.get('/BazaarList/GetList', function (data, status) {
-                console.log("Data: " + data + "\nStatus: " + status);
+                var _json = JSON.parse(data);
+                console.log(_json);
+                createTable(_json);
             });
+            function createTable(json) {
+                var _html = '<table>';
+                for (var i = 0; i < json.length; i++) {
+                    _html += '<tr>';
+                    _html += '<td>' + json[i].Title + '</td>' + '<td>' + json[i].Description + '</td>'
+                    _html += '</tr>';
+                }
+                _html += '</table>';
+                $('#data-here').html(_html);
+            }
 
         });
         /* hesaplama */

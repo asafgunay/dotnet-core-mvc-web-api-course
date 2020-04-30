@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Bootcamp",
   "dependencies": {
-    "jquery": "^3.4.0",
+    "jquery": "^3.5.0",
     "bootstrap": "4.3.1",
     "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
     "jquery-ajax-unobtrusive": "^3.2.6"

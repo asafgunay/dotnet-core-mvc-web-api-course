@@ -1,3 +1,5 @@
+
+
 # ASP.NET Core ile MVC Web Uygulaması ve Web Api Geliştirme Eğitimi
 
 # Konu Başlıkları ve İçerik ("Syllabus"):
@@ -73,4 +75,7 @@
 * [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download)
 
 * [Visual Studio Code](https://code.visualstudio.com/)
+
+* [SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+
 * [Kodluyoruz Bursa #Slack](https://join.slack.com/t/kodluyoruzbursa/shared_invite/enQtNjA2OTMzODk1MzgxLTdhN2ZjYTdhNTRiNTQzNmE5MmQxNTNkOTM4NjA1ZGQyMWIzNTBhMGQyOTA0NWRmNjI5NjNkZjViZTFmZTk2NmM)
